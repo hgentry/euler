@@ -2,7 +2,6 @@ pub fn solve() -> i64 {
 	let mut max = 0;
 	let mut maxindex = 0;
 	for i in 3..1000 {
-		println!("{}", i);
 		let mut j = i;
 		while j % 5 == 0 {
 			j /= 5;
