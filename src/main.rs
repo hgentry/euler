@@ -14,8 +14,6 @@ fn main() {
 	let mut total = 0.0;
 	let mut probs = 0;
 
-	
-
 	start = time::now();
 	let p1 = problems::p1::solve();
 	end = time::now();
@@ -200,6 +198,14 @@ fn main() {
 	total += duration;
 	probs += 1;
 	println!("The answer to problem 23 is {} ({}s)", p23, duration);
+
+	start = time::now();
+	let p24 = problems::p24::solve();
+	end = time::now();
+	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+	total += duration;
+	probs += 1;
+	println!("The answer to problem 24 is {} ({}s)", p24, duration);
 
 	start = time::now();
 	let p67 = problems::p67::solve();
