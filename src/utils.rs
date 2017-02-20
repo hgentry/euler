@@ -4,6 +4,8 @@ extern crate num_bigint;
 
 use num_bigint::*;
 use self::rusqlite::Connection;
+use std::fs::File;
+use std::io::prelude::*;
 
 pub struct Prime {
 		pub prime: i64,
@@ -325,4 +327,11 @@ pub fn pow_big(x: i64, e: i64) -> BigInt {
 		pow = pow * x.to_bigint().unwrap();
 	}
 	pow
+}
+
+pub fn read_file_to_string(filename : &str) -> String {
+	let f = File::open(filename);
+	let mut buffer = String::new();
+	f.unwrap().read_to_string(&mut buffer).unwrap();
+	buffer
 }

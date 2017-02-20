@@ -5,7 +5,6 @@ pub fn solve() -> i64 {
 	for i in 1..10000 {
 		let i_friend = amicability(i);
 		if amicability(i_friend) == i && i_friend != i {
-			println!("{} {}", i, i_friend);
 			sum += i;
 		}
 	}

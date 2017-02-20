@@ -10,17 +10,9 @@ fn main() {
 
 	let mut start : time::Tm;
 	let mut end : time::Tm;
-	let mut duration : f64 = 0.0;
-	let mut total = duration;
+	let mut duration : f64;
+	let mut total = 0.0;
 	let mut probs = 0;
-
-	start = time::now();
-	let p21 = problems::p21::solve();
-	end = time::now();
-	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
-	total += duration;
-	probs += 1;
-	println!("The answer to problem 21 is {} ({}s)", p21, duration);
 
 	start = time::now();
 	let p1 = problems::p1::solve();
@@ -184,12 +176,30 @@ fn main() {
 	println!("The answer to problem 20 is {} ({}s)", p20, duration);
 
 	start = time::now();
+	let p21 = problems::p21::solve();
+	end = time::now();
+	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+	total += duration;
+	probs += 1;
+	println!("The answer to problem 21 is {} ({}s)", p21, duration);
+
+	start = time::now();
+	let p22 = problems::p22::solve();
+	end = time::now();
+	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+	total += duration;
+	probs += 1;
+	println!("The answer to problem 22 is {} ({}s)", p22, duration);
+
+	start = time::now();
 	let p67 = problems::p67::solve();
 	end = time::now();
 	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
 	total += duration;
 	probs += 1;
 	println!("The answer to problem 67 is {} ({}s)", p67, duration);
+
+	
 
 	println!("Total time: {}s", total);
 	println!("Average solution time: {}s", total/(probs as f64));
