@@ -171,7 +171,7 @@ fn main() {
 	let p20 = problems::p20::solve();
 	end = time::now();
 	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
-	total += duration;
+	total += duration; 
 	probs += 1;
 	println!("The answer to problem 20 is {} ({}s)", p20, duration);
 
@@ -206,6 +206,22 @@ fn main() {
 	total += duration;
 	probs += 1;
 	println!("The answer to problem 24 is {} ({}s)", p24, duration);
+
+	start = time::now();
+	let p25 = problems::p25::solve();
+	end = time::now();
+	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+	total += duration;
+	probs += 1;
+	println!("The answer to problem 25 is {} ({}s)", p25, duration);
+
+	start = time::now();
+	let p26 = problems::p26::solve();
+	end = time::now();
+	duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+	total += duration;
+	probs += 1;
+	println!("The answer to problem 26 is {} ({}s)", p26, duration);
 
 	start = time::now();
 	let p67 = problems::p67::solve();

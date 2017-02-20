@@ -1,5 +1,3 @@
-use utils;
-
 //TODO this can be done much more quickly by generating permutations more efficiently, counting as it goes, and stopping at #1000000
 
 pub fn solve() -> String {
@@ -18,7 +16,6 @@ pub fn solve() -> String {
 		list.push(s);
 	}
 	list.sort();
-	println!("{}", list[999999]);
 	list[999999].to_string()
 }
 

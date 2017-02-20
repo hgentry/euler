@@ -22,5 +22,7 @@ pub mod p21;
 pub mod p22;
 pub mod p23;
 pub mod p24;
+pub mod p25;
+pub mod p26;
 
 pub mod p67;
