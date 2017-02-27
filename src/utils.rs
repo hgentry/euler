@@ -66,14 +66,14 @@ pub fn add_primes_small() {
 }
 
 pub fn add_primes() {
-	println!("Adding primes to db...");
+	//println!("Adding primes to db...");
 	for _ in 1..11 {
 		add_primes_small();
 	}
 }
 
 pub fn create_prime_db() {
-	println!("Initializing primes db...");
+	//println!("Initializing primes db...");
 	let conn = Connection::open("math.sqlite").unwrap();
 	conn.execute("DROP TABLE primes",&[]).unwrap();
     conn.execute("CREATE TABLE primes (
@@ -186,7 +186,7 @@ pub fn fetch_prime_by_index(count: i64) -> i64 {
 }
 
 pub fn create_triangle_db() {
-	println!("Initializing triangular number db...");
+	//println!("Initializing triangular number db...");
 	let conn = Connection::open("math.sqlite").unwrap();
 	conn.execute("DROP TABLE triangles",&[]).unwrap();
     conn.execute("CREATE TABLE triangles (
@@ -199,7 +199,7 @@ pub fn create_triangle_db() {
 
 pub fn add_triangles() {
 	
-	println!("Adding more triangles to db...");
+	//println!("Adding more triangles to db...");
     let conn = Connection::open("math.sqlite").unwrap();
 
 	let mut stmt = conn.prepare(&format!("{}","SELECT triangle, triangle_index FROM triangles WHERE triangle = (SELECT MAX(triangle) FROM triangles)")).unwrap();
