@@ -8,7 +8,7 @@ pub fn solve() -> i64 {
 			let mut n = 0;
 			loop {
 				let p = n*n + a*n + b;
-				if p >= 2 && (n>=2 && b % n != 0 || n < 2) && utils::is_prime(p) {
+				if p >= 2 && (n>=2 && b % n != 0 || n < 2) && utils::primes::is_prime(p) {
 					if n > longest {
 						longest = n;
 						best = a*b;

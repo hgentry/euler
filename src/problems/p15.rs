@@ -3,5 +3,5 @@ use num_bigint::*;
 use utils;
 
 pub fn solve() -> BigInt {
-	utils::combination_big(40,20)
+	utils::math::combination_big(40,20)
 }

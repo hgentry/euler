@@ -1,8 +1,17 @@
 use utils;
 
 pub fn solve() -> i64 {
-	let p = utils::fetch_prime_by_index(10001);
-	p
+	let mut primes = 3;
+    let mut checking = 5;
+    loop {
+        checking += 2;
+        if utils::primes::is_prime(checking) {
+            primes += 1;
+            if primes == 10001 {
+                return checking;
+            }
+        }
+    }
 }
 
 

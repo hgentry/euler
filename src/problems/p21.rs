@@ -12,7 +12,7 @@ pub fn solve() -> i64 {
 }
 
 pub fn amicability(x : i64) -> i64 {
-	let factors = utils::factors(x);
+	let factors = utils::math::factors(x);
 	let mut f_sum = 0;
 	for factor in factors {
 		f_sum += factor;

@@ -1,52 +1,74 @@
-//TODO this can be done much more quickly by generating permutations more efficiently, counting as it goes, and stopping at #1000000
+use utils;
 
-pub fn solve() -> String {
-	let mut v : Vec<i64> = vec![];
-	for i in 0..10 {
-		v.push(i as i64);
-	}
-	let r = permute(v);
-	let mut list : Vec<String> = vec![];
-	for i in 0..r.len() {
-		let mut s : String = "".to_string();
-		let iter = r[i].iter();
-		for j in iter {
-			s = format!("{}{}",s,*j);
-		}
-		list.push(s);
-	}
-	list.sort();
-	list[999999].to_string()
+pub fn solve() -> i64 {
+    //I did math by hand to find a better starting point
+    let mut count = 725761;
+    let mut permutation = vec!(2,0,1,3,4,5,6,7,8,9);
+    let mut alter_pos = 1;
+
+
+    while count != 1000000 {
+        //println!("{}", print_perm(&permutation));
+        //Increase by a lot by knowing basic statistics, back up if it goes too far
+        if count < 1000000 {
+            let old_val = permutation[alter_pos];
+            let mut tmp_perm = permutation.split_off(alter_pos);
+                tmp_perm[0] += 1;
+            while permutation.contains(&tmp_perm[0]) {
+                tmp_perm[0] += 1;
+                tmp_perm[0] = tmp_perm[0] % 10;
+            }
+            permutation.append(&mut tmp_perm);
+            let len: i64 = 10 - alter_pos as i64 - 1;
+            count += utils::math::permutation(len, len);
+            if alter_pos <= 9 {
+                for i in alter_pos+1..10 {
+                    if permutation[i] == permutation[alter_pos] {
+                            permutation[i] = old_val;
+                    }  
+                }
+            }
+            let mut perm2 = permutation.split_off(alter_pos + 1);
+            perm2.sort();
+            permutation.append(&mut perm2);
+        } else if count > 1000000 {
+            let old_val = permutation[alter_pos];
+            let mut tmp_perm = permutation.split_off(alter_pos);
+            tmp_perm[0] -= 1;
+            while permutation.contains(&tmp_perm[0]) {
+                tmp_perm[0] -= 1;
+                tmp_perm[0] = tmp_perm[0] % 10;
+            }
+            permutation.append(&mut tmp_perm);
+            let len: i64 = 10 - alter_pos as i64 - 1;
+            count -= utils::math::permutation(len, len);
+            if alter_pos <= 9 {
+                for i in alter_pos+1..10 {
+                    if permutation[i] == permutation[alter_pos] {
+                            permutation[i] = old_val;
+                    }  
+                }
+            }
+            alter_pos += 1;
+            let mut perm2 = permutation.split_off(alter_pos + 1);
+            perm2.sort();
+            permutation.append(&mut perm2);
+        }
+    }
+    
+    print_perm(&permutation)
 }
 
-pub fn permute(v: Vec<i64>) -> Vec<Vec<i64>> {
-	let mut res : Vec<Vec<i64>> = vec![];
-
-	if v.len() == 1 {
-		let mut tmp = vec![];
-		tmp.push(v[0]);
-		res.push(tmp);
-		return res;
-	}
-
-	for i in v.iter() {
-		let mut vi : Vec<i64> = vec![];
-		for j in v.iter() {
-			if *i != *j {
-				vi.push(*j);
-			}
-		}
-		
-		let vs = permute(vi);
-		for p in vs {
-			let mut tmp = vec![];
-			tmp.push(*i);
-			let mut q = p.clone();
-			tmp.append(&mut q);
-			res.push(tmp);
-		}
-	}
-
-	//println!("{}", res.len());
-	return res;
+fn print_perm(permutation: &Vec<i64>) -> i64 {
+    let mut perm = 0;
+    for i in 0..10 {
+        let mut digit = permutation[9-i];
+        let mut j = 0;
+        while j < i {
+            digit *= 10;
+            j += 1;
+        }
+        perm += digit;
+    }
+    perm
 }

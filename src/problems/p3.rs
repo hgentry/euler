@@ -7,7 +7,7 @@ pub fn solve() -> i64 {
 	let mut best = 1;
 	while i < upper_limit {
 		if big % i == 0 {
-			if utils::is_prime(i) {
+			if utils::primes::is_prime(i) {
 				best = i;
 			}
 		}

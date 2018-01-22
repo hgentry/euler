@@ -1,7 +1,7 @@
 use utils;
 
 pub fn solve() -> i64 {
-	let s : String = utils::read_file_to_string("input/p022_names.txt");
+	let s : String = utils::strings::read_file_to_string("input/p022_names.txt");
 	let mut list : Vec<String> = process_list(s);
 	list.sort();
 
