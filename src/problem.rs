@@ -39,6 +39,8 @@ pub fn problem(n: i64) {
 			28 => s = {found = true; problems::p28::solve().to_string()},
 			29 => s = {found = true; problems::p29::solve().to_string()},
             30 => s = {found = true; problems::p30::solve().to_string()},
+            31 => s = {found = true; problems::p31::solve().to_string()},
+            32 => s = {found = true; problems::p32::solve().to_string()},
 			45 => s = {found = true; problems::p45::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			_ => s = format!("Problem {} has not been solved.", n)
