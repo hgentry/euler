@@ -41,6 +41,10 @@ pub fn problem(n: i64) {
             30 => s = {found = true; problems::p30::solve().to_string()},
             31 => s = {found = true; problems::p31::solve().to_string()},
             32 => s = {found = true; problems::p32::solve().to_string()},
+            33 => s = {found = true; problems::p33::solve().to_string()},
+            34 => s = {found = true; problems::p34::solve().to_string()},
+            35 => s = {found = true; problems::p35::solve().to_string()},
+			36 => s = {found = true; problems::p36::solve().to_string()},
 			45 => s = {found = true; problems::p45::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			_ => s = format!("Problem {} has not been solved.", n)
@@ -48,7 +52,7 @@ pub fn problem(n: i64) {
 		let end = time::now();
 		let duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
         if found {
-            let output1 = format!("| {0: >7} | {1: >20} | {2: >8.5} |", 
+            let output1 = format!("| {0: >7} | {1: >20} | {2: >8.5} |",
         n, s, duration);
             let output = format!("{0: <44}", output1);
             if duration > 60.0 / 618.0 && duration < 1.0 {

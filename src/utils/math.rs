@@ -54,13 +54,13 @@ pub fn factors(x : i64) -> Vec<i64> {
 	return v;
 }
 
-/*pub fn pow(x: i64, e: i64) -> i64 {
+pub fn pow(x: i64, e: i64) -> i64 {
 	let mut pow = 1;	
 	for _ in 1..e+1 {
 		pow = pow * x;
 	}
 	pow
-}*/
+}
 
 pub fn pow_big(x: i64, e: i64) -> BigInt {
 	let mut pow = 1.to_bigint().unwrap();	
