@@ -1,4 +1,3 @@
-extern crate rusqlite;
 extern crate time;
 
 pub fn solve() -> i64 {

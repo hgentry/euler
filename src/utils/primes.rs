@@ -1,4 +1,7 @@
 pub fn is_prime(x: i64) -> bool {
+	if x < 2 {
+		return false;
+	}
 	let mut i = 2;
 	let upper_limit = (x as f64).sqrt() as i64 + 1;
 	while i < upper_limit {

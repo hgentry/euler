@@ -172,3 +172,17 @@ pub fn is_pandigital(mut x: i64, digits: &Vec<i64>) -> bool {
 		false
 	}
 }
+
+pub fn quadratic(a: f64,b: f64,c: f64) -> Vec<f64> {
+		let x1 = (-b + (b*b - 4.0*a*c).sqrt())/(2.0*a);
+		let x2 = (-b + (b*b - 4.0*a*c).sqrt())/(2.0*a);
+		return vec![x1,x2];
+}
+
+pub fn is_triangle(x: i64) -> bool{
+	let roots = quadratic(0.5, 0.5, (0-x) as f64);
+		if(roots[0] == roots[0].floor()) {
+				return true;
+		}
+		return false;
+}
