@@ -45,8 +45,12 @@ pub fn problem(n: i64) {
             34 => s = {found = true; problems::p34::solve().to_string()},
             35 => s = {found = true; problems::p35::solve().to_string()},
 			36 => s = {found = true; problems::p36::solve().to_string()},
+			38 => s = {found = true; problems::p38::solve().to_string()},
+			39 => s = {found = true; problems::p39::solve().to_string()},
+			40 => s = {found = true; problems::p40::solve().to_string()},
 			45 => s = {found = true; problems::p45::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
+			615 => s = {found = true; problems::p615::solve().to_string()},
 			_ => s = format!("Problem {} has not been solved.", n)
 		}
 		let end = time::now();

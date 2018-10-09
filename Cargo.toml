@@ -11,3 +11,4 @@ features = ["bundled"]
 time = "0.1.36"
 num-bigint = "0.1.35"
 colored = "1.6"
+ord_subset = "3"
