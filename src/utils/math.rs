@@ -94,7 +94,8 @@ pub fn triangle(n: i64) -> i64 {
 	n*(n-1)/2
 }
 
-pub fn next_permutation(mut v: Vec<i64>) -> Vec<i64> {
+pub fn next_permutation(mut input: &Vec<i64>) -> Vec<i64> {
+	let mut v = input.clone();
 	let mut k0:i64 = -1;
 
 	for i in 0..v.len()-1 {
@@ -125,7 +126,40 @@ pub fn next_permutation(mut v: Vec<i64>) -> Vec<i64> {
 	v
 }
 
-pub fn prev_permutation(mut v: Vec<i64>) -> Vec<i64> {
+pub fn next_permutation_in_place(mut v: Vec<i64>) -> Vec<i64> {
+	let mut k0:i64 = -1;
+
+	for i in 0..v.len()-1 {
+		if v[i] < v[i+1] {
+			k0 = i as i64;
+		}
+	}
+	if k0 == -1 {
+		return vec![];
+	}
+
+
+	let mut l0 = k0 + 1;
+	for i in k0 + 1..v.len() as i64 {
+		if v[k0 as usize] < v[i as usize] {
+			l0 = i;
+		}
+	}
+	//swap k0, l0
+	v.swap(k0 as usize, l0 as usize);
+	let mut i = k0 + 1;
+	let len = v.len();
+	while i < v.len() as i64 - (i - k0) {
+		//swap i, v.len() - (i-k0)
+		v.swap(i as usize, (len - (i-k0) as usize) as usize);
+		i+=1;
+	}
+	v
+}
+
+
+pub fn prev_permutation(mut input: &Vec<i64>) -> Vec<i64> {
+	let mut v = input.clone();
 	let mut k0:i64 = -1;
 
 	for i in 0..v.len()-1 {
@@ -181,8 +215,17 @@ pub fn quadratic(a: f64,b: f64,c: f64) -> Vec<f64> {
 
 pub fn is_triangle(x: i64) -> bool{
 	let roots = quadratic(0.5, 0.5, (0-x) as f64);
-		if(roots[0] == roots[0].floor()) {
+		if roots[0] == roots[0].floor() {
 				return true;
 		}
 		return false;
+}
+
+
+pub fn to_num(v : &Vec<i64>) -> i64 {
+    let mut sum = 0;
+    for i in 0..v.len() {
+        sum += pow(10, i as i64)*v[(v.len() - i - 1) as usize];
+    }
+    sum
 }

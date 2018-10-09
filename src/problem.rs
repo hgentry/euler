@@ -51,6 +51,7 @@ pub fn problem(n: i64) {
 			40 => s = {found = true; problems::p40::solve().to_string()},
 			41 => s = {found = true; problems::p41::solve().to_string()},
 			42 => s = {found = true; problems::p42::solve().to_string()},
+			43 => s = {found = true; problems::p43::solve().to_string()},
 			45 => s = {found = true; problems::p45::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			615 => s = {found = true; problems::p615::solve().to_string()},
