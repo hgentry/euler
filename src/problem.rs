@@ -61,6 +61,7 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			79 => s = {found = true; problems::p79::solve().to_string()},
 			92 => s = {found = true; problems::p92::solve().to_string()},
+			97 => s = {found = true; problems::p97::solve().to_string()},
 			615 => s = {found = true; problems::p615::solve().to_string()},
 			700 => s = {found = true; problems::p700::solve().to_string()},
 			739 => s = {found = true; problems::p739::solve().to_string()},
