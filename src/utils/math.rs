@@ -329,3 +329,13 @@ fn extended_euclidean_recurse(a: i64, b: i64, mut x: i64, mut y: i64) -> (i64, i
 
 	return (a, b, x, y);
 }
+
+pub fn from_vec(v: Vec<i64>) -> i64 {
+	let mut sum = 0;
+	let mut mult = 1;
+	for i in 0..v.len() {
+		sum += v[v.len()-i-1] * mult;
+		mult *= 10;
+	}
+	return sum;
+}

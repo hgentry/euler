@@ -62,6 +62,7 @@ pub mod p92;
 pub mod p97;
 
 //Far Future
+pub mod p206;
 pub mod p615;
 pub mod p700;
 pub mod p739;
