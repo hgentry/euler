@@ -1,10 +1,8 @@
 
 extern crate time;
-extern crate colored;
 use problems;
-use colored::*;
 
-pub fn problem(n: i64) {
+pub fn problem(n: i64) -> (i64, String, f64) {
 		let s : String;
 		let start = time::now();
         let mut found = false;
@@ -52,25 +50,24 @@ pub fn problem(n: i64) {
 			41 => s = {found = true; problems::p41::solve().to_string()},
 			42 => s = {found = true; problems::p42::solve().to_string()},
 			43 => s = {found = true; problems::p43::solve().to_string()},
+			44 => s = {found = true; problems::p44::solve().to_string()},
 			45 => s = {found = true; problems::p45::solve().to_string()},
+			46 => s = {found = true; problems::p46::solve().to_string()},
+			47 => s = {found = true; problems::p47::solve().to_string()},
+			57 => s = {found = true; problems::p57::solve().to_string()},
+			59 => s = {found = true; problems::p59::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			615 => s = {found = true; problems::p615::solve().to_string()},
+			700 => s = {found = true; problems::p700::solve().to_string()},
+			739 => s = {found = true; problems::p739::solve().to_string()},
 			_ => s = format!("Problem {} has not been solved.", n)
 		}
 		let end = time::now();
 		let duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
         if found {
-            let output1 = format!("| {0: >7} | {1: >20} | {2: >8.5} |",
-        n, s, duration);
-            let output = format!("{0: <44}", output1);
-            if duration > 60.0 / 618.0 && duration < 1.0 {
-		        println!("{}", output.white());
-            } else if duration > 1.0 {
-                println!("{}", output.bright_red());
-            } else {
-                println!("{}", output.bright_green());
-            }
+            
         } else {
             println!("{}",s);
-        }
+		}
+		return (n,s,duration);
 	}

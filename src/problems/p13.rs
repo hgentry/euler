@@ -137,5 +137,5 @@ pub fn solve() -> i64 {
 
 	let result = format!("{}{}{}{}{}{}{}{}", sum[0],sum[1],sum[2],sum[3],sum[4],sum[5],sum[6],sum[7]);
 
-	return result.parse::<i64>().unwrap();;
+	return result.parse::<i64>().unwrap();
 }

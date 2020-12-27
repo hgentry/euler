@@ -1,4 +1,4 @@
-use utils::primes;
+
 use utils::math;
 pub fn solve() -> i64 {
     let mut index = 1;

@@ -15,7 +15,7 @@ pub fn solve() -> i64 {
         for j in 0..i {
             let n = i*j;
             let mut digits = vec!();
-            let mut parse = vec!(i, j, n);
+            let parse = vec!(i, j, n);
             let mut failure = false;
             let mut len = 0;
             for k in parse {

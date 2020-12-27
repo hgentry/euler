@@ -13,7 +13,7 @@ pub fn solve() -> i64 {
 				rt_primes.push(candidate);
 			}
 		}
-		if(left_truncatable(p)) {
+		if left_truncatable(p) {
 			successes.push(p);
 		}
 	}

@@ -1,7 +1,7 @@
-use std::collections::BTreeMap;
+
 use ord_subset::*;
-use std::cell::RefCell;
-use std::rc::Rc;
+
+
 
 #[derive(Clone)]
 pub struct ChangeSet {
@@ -47,7 +47,7 @@ pub fn expand_changesets(sets: &mut Vec<ChangeSet>) {
 			if sets[j].post.len() > 0 {
 				continue;
 			}
-			else {;
+			else {
 				let mut new_pre_set: Vec<i64> = vec!();
 				let mut new_post_set: Vec<i64> = vec!();
 				for p in &sets[i].pre {

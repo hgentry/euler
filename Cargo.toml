@@ -3,9 +3,8 @@ name = "euler"
 version = "0.1.0"
 authors = ["hgentry"]
 
-
 [dependencies]
 time = "0.1.36"
-num-bigint = "0.1.35"
+num-bigint = "0.3.1"
 colored = "1.6"
 ord_subset = "3"
