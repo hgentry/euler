@@ -1,12 +1,9 @@
-use utils::math;
-
 pub fn solve() -> i64 {
 	let mut num = 99999999;
 	loop {
 		let val = build_num(num);
 		if (val as f64).sqrt() == (val as f64).sqrt().floor() {
 			if val % ((val as f64).sqrt() as i64) == 0 {
-				println!("{} {}",  (val as f64).sqrt().floor() as i64, val as i64);
 				return (val as f64).sqrt() as i64 * 10;	
 			}
 		}
