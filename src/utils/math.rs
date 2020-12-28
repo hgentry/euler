@@ -340,3 +340,16 @@ pub fn to_vec(mut x: i64) -> Vec<i64> {
 	}
 	return ret;
 }
+
+pub fn is_palindrome(x: i128) -> bool {
+	let x_str: String = format!("{}",x);
+	let x_reversed: String = x_str.chars().rev().collect();
+	return x_str == x_reversed;
+}
+
+// This sucks do better
+pub fn reverse_i128(x: i128) -> i128 {
+	let x_str: String = format!("{}",x);
+	let x_reversed: String = x_str.chars().rev().collect();
+	return x_reversed.parse().expect(x_str.as_str());
+}

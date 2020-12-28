@@ -7,6 +7,10 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 		let start = time::now();
         let mut found = false;
 		match n {
+54 => s = {found = true; problems::p54::solve().to_string()},
+56 => s = {found = true; problems::p56::solve().to_string()},
+55 => s = {found = true; problems::p55::solve().to_string()},
+53 => s = {found = true; problems::p53::solve().to_string()},
 52 => s = {found = true; problems::p52::solve().to_string()},
 			1 => s = {found = true; problems::p1::solve().to_string()},
 			2 => s = {found = true; problems::p2::solve().to_string()},
