@@ -331,3 +331,12 @@ pub fn from_vec(v: Vec<i64>) -> i64 {
 	}
 	return sum;
 }
+
+pub fn to_vec(mut x: i64) -> Vec<i64> {
+	let mut ret = vec!();
+	while x > 0 {
+		ret.insert(0,x%10);
+		x /= 10;
+	}
+	return ret;
+}
