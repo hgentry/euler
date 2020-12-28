@@ -73,3 +73,4 @@ pub mod p615;
 pub mod p684;
 pub mod p700;
 pub mod p739;
+pub mod p52;

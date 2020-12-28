@@ -4,6 +4,7 @@ mod problems;
 mod utils;
 mod scheduler;
 mod problem;
+mod initializer;
 
 
 extern crate time;
@@ -30,18 +31,48 @@ fn main() {
         /* Other */ 79,92,97,206,700
     )};
     
+
+    let mut doing_init = false;
+    let mut to_init = "".to_string();
+
     let args: Vec<String> = env::args().collect();
     if args.len() > 1 {
         let mut args2 = vec!();
         let mut first = true;
+        let mut second = true;
         for a in args {
             if first {
                 first = false;
                 continue;
             }
-            args2.push(a.parse().unwrap());
+            if !first && second {
+                if a == "init".to_string() {
+                    doing_init = true;
+                    continue;
+                }
+                second = false;
+            }
+            if !doing_init {
+                args2.push(a.parse().unwrap());
+            } else {
+                to_init = a;
+                break;
+            }
         }
-        status = Status{to_solve: args2};
+
+        if !doing_init {
+            status = Status{to_solve: args2};
+        }
+    }
+
+    if doing_init {
+        let initialized = initializer::initialize(to_init.clone());
+        if initialized {
+            println!("Initialized {}", to_init.clone());
+        } else {
+            println!("Could not initialize {}",to_init.clone());
+        }
+        return;
     }
     
     let total_problems = status.to_solve.len();
