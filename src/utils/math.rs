@@ -275,17 +275,9 @@ pub fn num_digits_bigint(x: BigInt) -> i64 {
 
 pub fn reduce_fraction(mut a : i64, mut b : i64) -> (i64, i64) {
     let va = factors(a);
-    let vb = factors(b);
     let mut done = true;
     loop {
         for f in &va {
-            if *f > 1 && a % *f == 0 && b % *f == 0 {
-                a /= *f;
-                b /= *f;
-                done = false;
-            }
-        }
-        for f in &vb {
             if *f > 1 && a % *f == 0 && b % *f == 0 {
                 a /= *f;
                 b /= *f;

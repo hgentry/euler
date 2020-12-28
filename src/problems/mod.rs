@@ -48,13 +48,17 @@ pub mod p44;
 pub mod p45;
 pub mod p46;
 pub mod p47;
+pub mod p48;
+pub mod p49;
 
 //Level 3
 pub mod p57;
 pub mod p58;
 pub mod p59;
+pub mod p60;
 pub mod p63;
 pub mod p67;
+pub mod p71;
 
 //Level 4
 pub mod p79;
@@ -64,5 +68,6 @@ pub mod p97;
 //Far Future
 pub mod p206;
 pub mod p615;
+pub mod p684;
 pub mod p700;
 pub mod p739;
