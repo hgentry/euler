@@ -32,6 +32,7 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 			23 => s = {found = true; problems::p23::solve().to_string()},
 			24 => s = {found = true; problems::p24::solve().to_string()},
 			25 => s = {found = true; problems::p25::solve().to_string()},
+
 			26 => s = {found = true; problems::p26::solve().to_string()},
 			27 => s = {found = true; problems::p27::solve().to_string()},
 			28 => s = {found = true; problems::p28::solve().to_string()},
@@ -57,6 +58,8 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 			48 => s = {found = true; problems::p48::solve().to_string()},
 			49 => s = {found = true; problems::p49::solve().to_string()},
 			50 => s = {found = true; problems::p50::solve().to_string()},
+
+			51 => s = {found = true; problems::p51::solve().to_string()},
 			57 => s = {found = true; problems::p57::solve().to_string()},
 			58 => s = {found = true; problems::p58::solve().to_string()},
 			59 => s = {found = true; problems::p59::solve().to_string()},
@@ -64,6 +67,7 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 			63 => s = {found = true; problems::p63::solve().to_string()},
 			67 => s = {found = true; problems::p67::solve().to_string()},
 			71 => s = {found = true; problems::p71::solve().to_string()},
+
 			79 => s = {found = true; problems::p79::solve().to_string()},
 			92 => s = {found = true; problems::p92::solve().to_string()},
 			97 => s = {found = true; problems::p97::solve().to_string()},
