@@ -35,7 +35,7 @@ pub fn num_alter(x: i64, b: i64) -> Vec<i64> {
             }
             r = ((r as f64)/2.0).floor() as i64;
         }
-        let addition = math::from_vec(mutilate);
+        let addition = math::from_vec(&mutilate);
         if addition >= x {
             results.push(addition);
         }

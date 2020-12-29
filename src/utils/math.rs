@@ -179,6 +179,37 @@ pub fn next_permutation_in_place(mut v: Vec<i64>) -> Vec<i64> {
 	v
 }
 
+pub fn next_permutation_in_place_2(v: &mut Vec<i64>) {
+	let mut k0:i64 = -1;
+
+	for i in 0..v.len()-1 {
+		if v[i] < v[i+1] {
+			k0 = i as i64;
+		}
+	}
+	if k0 == -1 {
+		v.drain(0..v.len());
+		return;
+	}
+
+
+	let mut l0 = k0 + 1;
+	for i in k0 + 1..v.len() as i64 {
+		if v[k0 as usize] < v[i as usize] {
+			l0 = i;
+		}
+	}
+	//swap k0, l0
+	v.swap(k0 as usize, l0 as usize);
+	let mut i = k0 + 1;
+	let len = v.len();
+	while i < v.len() as i64 - (i - k0) {
+		//swap i, v.len() - (i-k0)
+		v.swap(i as usize, (len - (i-k0) as usize) as usize);
+		i+=1;
+	}
+}
+
 
 pub fn prev_permutation(input: &Vec<i64>) -> Vec<i64> {
 	let mut v = input.clone();
@@ -322,11 +353,25 @@ fn extended_euclidean_recurse(a: i64, b: i64, mut x: i64, mut y: i64) -> (i64, i
 	return (a, b, x, y);
 }
 
-pub fn from_vec(v: Vec<i64>) -> i64 {
+pub fn from_vec(v: &Vec<i64>) -> i64 {
 	let mut sum = 0;
 	let mut mult = 1;
 	for i in 0..v.len() {
 		sum += v[v.len()-i-1] * mult;
+		mult *= 10;
+	}
+	return sum;
+}
+
+pub fn from_sorted_vec_with_zeroes(v: &Vec<i64>) -> i64 {
+	let mut sum = 0;
+	let mut mult = 1;
+	for i in 0..v.len() {
+		if v[v.len()-i-1] == 0 {
+			sum *= 10;
+		} else {
+			sum += v[v.len()-i-1] * mult;
+		}
 		mult *= 10;
 	}
 	return sum;
@@ -352,4 +397,48 @@ pub fn reverse_i128(x: i128) -> i128 {
 	let x_str: String = format!("{}",x);
 	let x_reversed: String = x_str.chars().rev().collect();
 	return x_reversed.parse().expect(x_str.as_str());
+}
+
+pub fn next_permutation_i64(x: i64, pows: &Vec<i64>) -> i64 {
+    let mut k0:i64 = -1;
+
+	for i in 0..pows.len()-1 {
+		if x/pows[pows.len()-i-1] % 10 < x/pows[pows.len()-(i+1)-1] % 10 {
+            k0 = i as i64;
+		}
+	}
+	if k0 == -1 {
+		return 0;
+	}
+
+
+	let mut l0 = k0 + 1;
+	for i in k0 + 1..pows.len()as i64 {
+		if x/pows[pows.len()-1-k0 as usize]%10 < x/pows[pows.len()-1-i as usize]%10 {
+			l0 = i;
+		}
+	}
+    //swap k0, l0
+    let mut x1 = x;
+    x1 = swap_i64(x1, k0, l0, &pows);
+    
+	let mut i = k0 + 1;
+	let len = pows.len() as i64;
+	while i < pows.len() as i64 - (i - k0) + 1 {
+		//swap i, v.len() - (i-k0)
+		x1 = swap_i64(x1, i, len - (i as i64-k0), &pows);
+		i+=1;
+    }
+    return x1;
+}
+
+pub fn swap_i64(x: i64, k0: i64, l0: i64, pows: &Vec<i64>) -> i64{
+    let mut x1 = x;
+    let k = x/pows[pows.len()-1-k0 as usize]%10;
+    let l = x/pows[pows.len()-1-l0 as usize]%10;
+    x1 -= k*pows[pows.len()-1-k0 as usize];
+    x1 -= l*pows[pows.len()-1-l0 as usize];
+    x1 += k*pows[pows.len()-1-l0 as usize];
+    x1 += l*pows[pows.len()-1-k0 as usize];
+    return x1;
 }
