@@ -23,6 +23,7 @@ static GOAL: f64 =  60.0;
 use scheduler::*;
 
 fn main() {
+    let spoilers_hidden = false;
     let start = time::now();
     //let status = Status{to_solve: vec!(59)};
     let mut status = Status{to_solve: vec!(
@@ -80,38 +81,87 @@ fn main() {
     let mut solver = Solver::new(status, T_COUNT);
     solver.solve();
     solver.results.sort_by_key(|x| x.n);
-    println!("---------------------------------------------");
-    println!("| {0: <7} | {1: >20} | {2: >8} |",
-        "Problem", "Solution","Time");
-    println!("---------------------------------------------");
+    println!("-------------------------------------------------------------------------------------------");
     let mut solved = 0;
-    for result in solver.results {
-        let n = result.n;
-        let s = result.s;
-        let duration = result.duration;
-        let output1 = format!("| {0: >7} | {1: >20} | {2: >8.5} |",
-        n, s, duration);
-            let output = format!("{0: <44}", output1);
-            if duration > 60.0 / 618.0 && duration < 1.0 {
-		        println!("{}", output.white());
-            } else if duration > 1.0 {
-                println!("{}", output.bright_red());
-            } else {
-                println!("{}", output.bright_green());
+    let mut skip = 0;
+    for result in 0..solver.results.len() {
+        if skip > 0 {
+            skip -= 1;
+            continue;
+        }
+        if result % 25 == 0 {
+            println!("| {0: <7} | {1: >20} | {2: >8} | | {0: <7} | {1: >20} | {2: >8} |",
+        "Problem", "Solution","Time");
+        println!("-------------------------------------------------------------------------------------------");
+    
+        }
+        let n = solver.results[result].n;
+        let mut s = solver.results[result].s.clone();
+        let duration = solver.results[result].duration;
+        let mut n2 = 0;
+        let mut s2 = "".to_string();
+        let mut duration2 = 0.0;
+        if spoilers_hidden {
+            s = "*spoilers hidden*".to_string();
+        }
+        if result + 25  < solver.results.len() {
+            n2 = solver.results[result+ 25].n;
+            s2 = solver.results[result + 25].s.clone();
+            duration2 = solver.results[result + 25].duration;
+            if spoilers_hidden {
+                s2 = "*spoilers hidden*".to_string();
             }
+        }
+        let output1 = format!("| {0: >7} | {1: >20} | {2: >8.5} |", n, s, duration);
+        let output = format!("{0: <44}", output1);
+        if duration > 60.0 / 618.0 && duration < 1.0 {
+            print!("{} ", output.white());
+        } else if duration > 1.0 {
+            print!("{} ", output.bright_red());
+        } else {
+            print!("{} ", output.bright_green());
+        }
+        if n2 != 0 {
+            let output2 = format!("| {0: >7} | {1: >20} | {2: >8.5} |", n2, s2, duration2);
+            let output = format!("{0: <44}", output2);
+            if duration2 > 60.0 / 618.0 && duration2 < 1.0 {
+                print!("{}", output.white());
+            } else if duration2 > 1.0 {
+                print!("{}", output.bright_red());
+            } else {
+                print!("{}", output.bright_green());
+            }
+            solved += 1;
+        } else {
+                //-------------------------------------------
+            print!("                                            |");
+        }
+        println!();
         solved += 1;
-        if solved % 25 == 0 {
-            println!( "---------------------------------------------");
+        if (result + 1) % 25 == 0 && total_problems > 1 {
+            skip = 25;
+            println!( "-------------------------------------------------------------------------------------------");
             let level = format!("Level {}", solved/25);
-            let out = format!("| You leveled up!                {:>10} |", level);
+            let out = format!("| Good Job!                                                                    {:>10} |", level);
             println!("{}", out.bright_blue());
-            println!( "---------------------------------------------");
+            println!( "-------------------------------------------------------------------------------------------");
         }
     }
-    let end = time::now();
-	let duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
 
-    println!("---------------------------------------------");
+    if solved % 50 != 0 && solved % 50 != 49 && total_problems > 1 {
+        
+        println!( "-------------------------------------------------------------------------------------------");
+        let level = format!("Level {}", solved/25);
+        let out = format!("| Final Results                                                                {:>10} |", level);
+        println!("{}", out.bright_blue());
+        println!( "-------------------------------------------------------------------------------------------");
+    }
+    if total_problems == 1 {
+        println!( "-------------------------------------------------------------------------------------------");
+    }
+    let end = time::now();
+    let duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
+    
     println!("Solved {} problems in {:.5} seconds.", total_problems, duration);
 
     let avg: f64 = duration / total_problems as f64;
@@ -123,5 +173,5 @@ fn main() {
         println!("Average time per problem: {:.5}", avg);
         println!("This average meets expectations ({:.2}%).", score);
     }
-    println!("---------------------------------------------");
+    println!("-------------------------------------------------------------------------------------------");
 }
