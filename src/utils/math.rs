@@ -56,6 +56,25 @@ pub fn factors(x : i64) -> Vec<i64> {
 	return v;
 }
 
+pub fn factors_i128(x : i128) -> Vec<i128> {
+	let mut v : Vec<i128> = vec![];
+	let upper_limit = (x as f64).sqrt() as i128 + 1;
+	v.push(1);
+	for i in 2..upper_limit {
+		if x % i == 0 && x != i {
+			v.push(i);
+			if x/i != i {
+				v.push(x/i);
+			}
+		}
+	}
+	
+	if x != 1 {
+		v.push(x);
+	}
+	return v;
+}
+
 pub fn factors_count(x: i64) -> i64 {
 	let mut count: i64 = 1;
 	let upper_limit = (x as f64).sqrt() as i64;
@@ -306,20 +325,12 @@ pub fn num_digits_bigint(x: BigInt) -> i64 {
 
 pub fn reduce_fraction(mut a : i64, mut b : i64) -> (i64, i64) {
     let va = factors(a);
-    let mut done = true;
-    loop {
         for f in &va {
-            if *f > 1 && a % *f == 0 && b % *f == 0 {
+            while *f > 1 && a % *f == 0 && b % *f == 0 {
                 a /= *f;
                 b /= *f;
-                done = false;
             }
         }
-        if done {
-            break;
-        }
-        done = true;
-    }
     return (a,b);
 }
 
@@ -441,4 +452,38 @@ pub fn swap_i64(x: i64, k0: i64, l0: i64, pows: &Vec<i64>) -> i64{
     x1 += k*pows[pows.len()-1-l0 as usize];
     x1 += l*pows[pows.len()-1-k0 as usize];
     return x1;
+}
+
+pub fn add_fractions(a: (i64, i64), b: (i64, i64)) -> (i64, i64) {
+	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
+	let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
+	return reduced;
+}
+
+pub fn add_fractions_without_reduce(a: (i64, i64), b: (i64, i64)) -> (i64, i64) {
+	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
+	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
+	return to_reduce;
+}
+
+
+pub fn add_fractions_without_reduce_i128(a: (i128, i128), b: (i128, i128)) -> (i128, i128) {
+	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
+	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
+	return to_reduce;
+}
+
+pub fn add_fractions_without_reduce_big(a: (BigInt,BigInt), b: (BigInt,BigInt)) -> (BigInt,BigInt) {
+	let to_reduce = (a.0.clone() * b.1.clone() + b.0.clone() * a.1.clone(), a.1.clone()*b.1.clone());
+	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
+	return to_reduce;
+}
+
+pub fn sum_digits_big(mut x: BigInt) -> BigInt {
+	let mut sum = 0.to_bigint().unwrap();
+	while x != 0.to_bigint().unwrap() {
+		sum += x.clone() % 10.to_bigint().unwrap();
+		x /= 10.to_bigint().unwrap();
+	}
+	return sum;
 }
