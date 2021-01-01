@@ -76,3 +76,13 @@ pub fn wrong_reduce((top, bottom): (i64, i64), pos: i64) -> (i64, i64) {
 		(-1, -1)
 	}
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 100);
+	}
+}

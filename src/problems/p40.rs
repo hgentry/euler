@@ -31,3 +31,13 @@ pub fn to_vec(x: i64) -> Vec<i64> {
 	result.reverse();
 	result
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 210);
+	}
+}

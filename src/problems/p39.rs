@@ -19,3 +19,13 @@ pub fn solve() -> i64 {
 
 	index as i64
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 840);
+	}
+}

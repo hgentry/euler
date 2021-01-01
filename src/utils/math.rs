@@ -3,6 +3,7 @@ extern crate num;
 use num::bigint::*;
 use num::rational::*;
 use num::traits::*;
+use std::str::FromStr;
 use std::vec;
 use utils::primes;
 
@@ -330,14 +331,6 @@ pub fn reduce_fraction(mut a: i64, mut b: i64) -> (i64, i64) {
 	return (a, b);
 }
 
-pub fn max(a: i64, b: i64) -> i64 {
-	if a > b {
-		return a;
-	} else {
-		return b;
-	}
-}
-
 pub fn extended_euclidean(a: u64, b: u64) -> (i64, i64) {
 	let ee = extended_euclidean_recurse(a as i64, b as i64, 0, 0);
 	return (ee.2, ee.3);
@@ -401,11 +394,13 @@ pub fn is_palindrome<T: num::Integer + Clone + std::fmt::Display>(x: &T) -> bool
 	return x_str == x_reversed;
 }
 
-// This sucks do better
-pub fn reverse_i128(x: i128) -> i128 {
+pub fn reverse<T: num::Integer + Clone + std::fmt::Display + FromStr + std::fmt::Debug>(x: &T) -> T
+where
+	<T as FromStr>::Err: std::fmt::Debug,
+{
 	let x_str: String = format!("{}", x);
 	let x_reversed: String = x_str.chars().rev().collect();
-	return x_reversed.parse().expect(x_str.as_str());
+	return x_reversed.parse().unwrap();
 }
 
 pub fn next_permutation_i64(x: i64, pows: &Vec<i64>) -> i64 {
@@ -581,5 +576,15 @@ mod tests {
 	#[test]
 	fn test_is_palindrome_6() {
 		assert_eq!(is_palindrome(&(34343.to_bigint().unwrap())), true);
+	}
+
+	#[test]
+	fn test_reverse_1() {
+		assert_eq!(reverse(&1), 1);
+	}
+
+	#[test]
+	fn test_reverse_2() {
+		assert_eq!(reverse(&21), 12);
 	}
 }

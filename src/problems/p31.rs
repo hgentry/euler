@@ -19,3 +19,13 @@ pub fn coin_combos(coin_values: Vec<i64>, target: i64) -> i64 {
 	}
 	return ways;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 73682);
+	}
+}

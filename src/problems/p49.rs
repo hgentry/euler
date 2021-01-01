@@ -120,3 +120,13 @@ impl PandigitalFactory {
 		self.current[b as usize] = x;
 	}
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), "296962999629".to_string());
+	}
+}

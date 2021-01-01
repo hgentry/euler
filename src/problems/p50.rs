@@ -21,3 +21,13 @@ pub fn solve() -> i64 {
 	}
 	return winning_prime;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 997651);
+	}
+}

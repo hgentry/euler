@@ -52,3 +52,13 @@ pub fn left_truncatable(p: i64) -> bool {
 	}
 	return !failed;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 748317);
+	}
+}

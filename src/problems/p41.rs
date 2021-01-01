@@ -15,3 +15,13 @@ pub fn to_num(v: &Vec<i64>) -> i64 {
 	}
 	sum
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 7652413);
+	}
+}

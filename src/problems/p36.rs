@@ -24,3 +24,13 @@ pub fn to_binary_str(x: i64) -> String {
 pub fn is_palindrome(x_str: String) -> bool {
 	x_str.bytes().eq(x_str.bytes().rev())
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 872187);
+	}
+}

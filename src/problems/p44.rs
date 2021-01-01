@@ -34,3 +34,13 @@ pub fn quadratic(a: f64, b: f64, c: f64) -> (f64, f64) {
 	let x2: f64 = (-b as f64 - ((b * b - 4.0 * a * c) as f64).sqrt()) / ((2.0 * a) as f64);
 	return (x1, x2);
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 5482660.0);
+	}
+}

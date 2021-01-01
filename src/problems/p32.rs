@@ -75,3 +75,13 @@ pub fn generate_permutations() -> Vec<i64> {
 	}
 	perms
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 45228);
+	}
+}
