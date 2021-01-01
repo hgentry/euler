@@ -113,3 +113,13 @@ pub fn to_words(x: i64) -> String {
 
 	return "".to_string();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 21124);
+    }
+}

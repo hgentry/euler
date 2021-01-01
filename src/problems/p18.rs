@@ -43,3 +43,13 @@ pub fn pyramid(input : &str) -> i64 {
 	}
 	numbox[0][0]
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 1074);
+    }
+}
