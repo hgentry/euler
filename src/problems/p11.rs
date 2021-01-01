@@ -1,5 +1,5 @@
 pub fn solve() -> i64 {
-    let input = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+	let input = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
@@ -20,110 +20,110 @@ pub fn solve() -> i64 {
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
 
-    let vinput: Vec<&str> = input.split('\n').collect();
-    let mut numbox: Vec<Vec<i64>> = vec![];
+	let vinput: Vec<&str> = input.split('\n').collect();
+	let mut numbox: Vec<Vec<i64>> = vec![];
 
-    let mut lines = 0;
-    for line in vinput {
-        let vline: Vec<&str> = line.split(' ').collect();
-        numbox.push(vec![]);
-        for n in vline {
-            let val: i64 = n.parse::<i64>().unwrap();
-            numbox[lines].push(val);
-        }
-        lines += 1;
-    }
+	let mut lines = 0;
+	for line in vinput {
+		let vline: Vec<&str> = line.split(' ').collect();
+		numbox.push(vec![]);
+		for n in vline {
+			let val: i64 = n.parse::<i64>().unwrap();
+			numbox[lines].push(val);
+		}
+		lines += 1;
+	}
 
-    let mut best = 0;
-    for k in 1..numbox.len() {
-        let i = k as usize;
-        for l in 1..numbox[i].len() {
-            let j = l as usize;
-            //up!
-            if i >= 3 && i <= numbox.len() {
-                let prod = numbox[i][j] * numbox[i - 1][j] * numbox[i - 2][j] * numbox[i - 3][j];
-                if prod > best {
-                    best = prod;
-                }
-            }
-            //upleft!
-            if i >= 3 && j >= 3 {
-                let prod = numbox[i][j]
-                    * numbox[i - 1][j - 1]
-                    * numbox[i - 2][j - 2]
-                    * numbox[i - 3][j - 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
+	let mut best = 0;
+	for k in 1..numbox.len() {
+		let i = k as usize;
+		for l in 1..numbox[i].len() {
+			let j = l as usize;
+			//up!
+			if i >= 3 && i <= numbox.len() {
+				let prod = numbox[i][j] * numbox[i - 1][j] * numbox[i - 2][j] * numbox[i - 3][j];
+				if prod > best {
+					best = prod;
+				}
+			}
+			//upleft!
+			if i >= 3 && j >= 3 {
+				let prod = numbox[i][j]
+					* numbox[i - 1][j - 1]
+					* numbox[i - 2][j - 2]
+					* numbox[i - 3][j - 3];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //left!
-            if j >= 3 {
-                let prod = numbox[i][j] * numbox[i][j - 1] * numbox[i][j - 2] * numbox[i][j - 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
+			//left!
+			if j >= 3 {
+				let prod = numbox[i][j] * numbox[i][j - 1] * numbox[i][j - 2] * numbox[i][j - 3];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //downleft!
-            if i <= numbox.len() - 4 && j >= 3 {
-                let prod = numbox[i][j]
-                    * numbox[i + 1][j - 1]
-                    * numbox[i + 2][j - 2]
-                    * numbox[i + 3][j - 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
+			//downleft!
+			if i <= numbox.len() - 4 && j >= 3 {
+				let prod = numbox[i][j]
+					* numbox[i + 1][j - 1]
+					* numbox[i + 2][j - 2]
+					* numbox[i + 3][j - 3];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //down!
-            if i <= numbox.len() - 4 {
-                let prod = numbox[i][j] * numbox[i + 1][j] * numbox[i + 2][j] * numbox[i + 3][j];
-                if prod > best {
-                    best = prod;
-                }
-            }
+			//down!
+			if i <= numbox.len() - 4 {
+				let prod = numbox[i][j] * numbox[i + 1][j] * numbox[i + 2][j] * numbox[i + 3][j];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //downright!
-            if i <= numbox.len() - 4 && j <= numbox[0].len() - 4 {
-                let prod = numbox[i][j]
-                    * numbox[i + 1][j + 1]
-                    * numbox[i + 2][j + 2]
-                    * numbox[i + 3][j + 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
+			//downright!
+			if i <= numbox.len() - 4 && j <= numbox[0].len() - 4 {
+				let prod = numbox[i][j]
+					* numbox[i + 1][j + 1]
+					* numbox[i + 2][j + 2]
+					* numbox[i + 3][j + 3];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //right!
-            if j <= numbox[0].len() - 4 {
-                let prod = numbox[i][j] * numbox[i][j + 1] * numbox[i][j + 2] * numbox[i][j + 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
+			//right!
+			if j <= numbox[0].len() - 4 {
+				let prod = numbox[i][j] * numbox[i][j + 1] * numbox[i][j + 2] * numbox[i][j + 3];
+				if prod > best {
+					best = prod;
+				}
+			}
 
-            //upright!
-            if i >= 3 && j <= numbox[0].len() - 4 {
-                let prod = numbox[i][j]
-                    * numbox[i - 1][j + 1]
-                    * numbox[i - 2][j + 2]
-                    * numbox[i - 3][j + 3];
-                if prod > best {
-                    best = prod;
-                }
-            }
-        }
-    }
-    best
+			//upright!
+			if i >= 3 && j <= numbox[0].len() - 4 {
+				let prod = numbox[i][j]
+					* numbox[i - 1][j + 1]
+					* numbox[i - 2][j + 2]
+					* numbox[i - 3][j + 3];
+				if prod > best {
+					best = prod;
+				}
+			}
+		}
+	}
+	best
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+	use super::*;
 
-    #[test]
-    fn correct() {
-        assert_eq!(solve(), 70600674);
-    }
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 70600674);
+	}
 }

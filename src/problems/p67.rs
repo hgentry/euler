@@ -1,7 +1,7 @@
 use problems::p18;
 
 pub fn solve() -> i64 {
-    p18::pyramid("59
+	p18::pyramid("59
 73 41
 52 40 09
 26 53 06 34

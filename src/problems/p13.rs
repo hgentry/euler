@@ -1,7 +1,7 @@
 extern crate time;
 
 pub fn solve() -> i64 {
-    let input = "37107287533902102798797998220837590246510135740250
+	let input = "37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
 74324986199524741059474233309513058123726617309629
 91942213363574161572522430563301811072406154908250
@@ -102,53 +102,53 @@ pub fn solve() -> i64 {
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690";
 
-    let vinput: Vec<&str> = input.split('\n').collect();
-    let mut numbox: Vec<Vec<i64>> = vec![];
+	let vinput: Vec<&str> = input.split('\n').collect();
+	let mut numbox: Vec<Vec<i64>> = vec![];
 
-    let mut lines = 0;
+	let mut lines = 0;
 
-    for line in vinput {
-        let chars = line.chars();
-        numbox.push(vec![]);
-        for c in chars {
-            let tmp: i64 = c.to_digit(10).unwrap() as i64;
-            numbox[lines].push(tmp);
-        }
-        lines += 1;
-    }
+	for line in vinput {
+		let chars = line.chars();
+		numbox.push(vec![]);
+		for c in chars {
+			let tmp: i64 = c.to_digit(10).unwrap() as i64;
+			numbox[lines].push(tmp);
+		}
+		lines += 1;
+	}
 
-    let width = numbox[0].len();
+	let width = numbox[0].len();
 
-    let mut sum: Vec<i64> = vec![];
-    for _ in 0..width {
-        sum.push(0);
-    }
+	let mut sum: Vec<i64> = vec![];
+	for _ in 0..width {
+		sum.push(0);
+	}
 
-    for row in numbox {
-        for i in 0..width {
-            sum[i] += row[i];
-        }
-    }
+	for row in numbox {
+		for i in 0..width {
+			sum[i] += row[i];
+		}
+	}
 
-    for i in 2..width + 1 {
-        sum[width - i] += sum[width - i + 1] / 10;
-        sum[width - i + 1] %= 10;
-    }
+	for i in 2..width + 1 {
+		sum[width - i] += sum[width - i + 1] / 10;
+		sum[width - i + 1] %= 10;
+	}
 
-    let result = format!(
-        "{}{}{}{}{}{}{}{}",
-        sum[0], sum[1], sum[2], sum[3], sum[4], sum[5], sum[6], sum[7]
-    );
+	let result = format!(
+		"{}{}{}{}{}{}{}{}",
+		sum[0], sum[1], sum[2], sum[3], sum[4], sum[5], sum[6], sum[7]
+	);
 
-    return result.parse::<i64>().unwrap();
+	return result.parse::<i64>().unwrap();
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+	use super::*;
 
-    #[test]
-    fn correct() {
-        assert_eq!(solve(), 5537376230);
-    }
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 5537376230);
+	}
 }
