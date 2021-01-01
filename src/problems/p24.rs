@@ -72,3 +72,13 @@ fn print_perm(permutation: &Vec<i64>) -> i64 {
     }
     perm
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 2783915460);
+    }
+}

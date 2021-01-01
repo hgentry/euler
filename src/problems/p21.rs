@@ -22,3 +22,13 @@ pub fn amicability(x : i64) -> i64 {
 	}
 	f_sum
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 31626);
+    }
+}

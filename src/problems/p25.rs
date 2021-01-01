@@ -19,4 +19,14 @@ pub fn solve() -> BigInt {
 	return index;
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 4782.to_bigint().unwrap());
+    }
+}
+
 

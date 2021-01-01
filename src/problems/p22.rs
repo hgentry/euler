@@ -29,3 +29,12 @@ pub fn process_list(s : String) -> Vec<String> {
 	return res;
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(),  871198282);
+    }
+}
