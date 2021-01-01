@@ -30,7 +30,7 @@ pub fn solve() -> i64 {
             primes += 1;
         }
 
-        let ratio = (primes as f64)/(nums as f64);
+        let ratio = (primes as f64) / (nums as f64);
         if ratio < 0.1 {
             return n;
         }

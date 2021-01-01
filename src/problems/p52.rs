@@ -1,11 +1,10 @@
 use utils::math;
 
 pub fn solve() -> i64 {
-
     for i in 1..150000 {
-        let mut multiples = vec!();
+        let mut multiples = vec![];
         for j in 2..7 {
-            multiples.push(j*i as i64);
+            multiples.push(j * i as i64);
         }
         let mut valid = true;
         for j in 0..multiples.len() {
@@ -25,7 +24,7 @@ pub fn same_digits(x: i64, y: i64) -> bool {
         return false;
     }
 
-    let mut digits: Vec<i64> = vec!();
+    let mut digits: Vec<i64> = vec![];
     for i in 0..x_v.len() {
         digits.push(x_v[i]);
     }

@@ -1,24 +1,23 @@
 #![allow(dead_code)]
 
-mod problems;
-mod utils;
-mod scheduler;
-mod problem;
 mod initializer;
+mod problem;
+mod problems;
+mod scheduler;
+mod utils;
 
-
-extern crate time;
 extern crate colored;
+extern crate num;
 extern crate ord_subset;
 extern crate substring;
-extern crate num;
+extern crate time;
 
 use colored::*;
 use std::env;
 
 static T_COUNT: i64 = 16;
 static PROBLEMS: f64 = 739.0;
-static GOAL: f64 =  60.0;
+static GOAL: f64 = 60.0;
 
 use scheduler::*;
 
@@ -26,20 +25,22 @@ fn main() {
     let spoilers_hidden = false;
     let start = time::now();
     //let status = Status{to_solve: vec!(59)};
-    let mut status = Status{to_solve: vec!(
-        /* Level 1 */ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,
-        /* Level 2 */ 26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,
-        /* Level 3 */ 51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,67,71,
-        /* Other */ 79,92,97,206,700
-    )};
-    
+    let mut status = Status {
+        to_solve: vec![
+            /* Level 1 */ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20, 21, 22, 23, 24, 25, /* Level 2 */ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
+            37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, /* Level 3 */ 51, 52, 53,
+            54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 67, 71, /* Other */ 79, 92, 97,
+            206, 700,
+        ],
+    };
 
     let mut doing_init = false;
     let mut to_init = "".to_string();
 
     let args: Vec<String> = env::args().collect();
     if args.len() > 1 {
-        let mut args2 = vec!();
+        let mut args2 = vec![];
         let mut first = true;
         let mut second = true;
         for a in args {
@@ -63,7 +64,7 @@ fn main() {
         }
 
         if !doing_init {
-            status = Status{to_solve: args2};
+            status = Status { to_solve: args2 };
         }
     }
 
@@ -72,11 +73,11 @@ fn main() {
         if initialized {
             println!("Initialized {}", to_init.clone());
         } else {
-            println!("Could not initialize {}",to_init.clone());
+            println!("Could not initialize {}", to_init.clone());
         }
         return;
     }
-    
+
     let total_problems = status.to_solve.len();
     let mut solver = Solver::new(status, T_COUNT);
     solver.solve();
@@ -90,10 +91,11 @@ fn main() {
             continue;
         }
         if result % 25 == 0 {
-            println!("| {0: <7} | {1: >20} | {2: >8} | | {0: <7} | {1: >20} | {2: >8} |",
-        "Problem", "Solution","Time");
-        println!("-------------------------------------------------------------------------------------------");
-    
+            println!(
+                "| {0: <7} | {1: >20} | {2: >8} | | {0: <7} | {1: >20} | {2: >8} |",
+                "Problem", "Solution", "Time"
+            );
+            println!("-------------------------------------------------------------------------------------------");
         }
         let n = solver.results[result].n;
         let mut s = solver.results[result].s.clone();
@@ -104,8 +106,8 @@ fn main() {
         if spoilers_hidden {
             s = "*spoilers hidden*".to_string();
         }
-        if result + 25  < solver.results.len() {
-            n2 = solver.results[result+ 25].n;
+        if result + 25 < solver.results.len() {
+            n2 = solver.results[result + 25].n;
             s2 = solver.results[result + 25].s.clone();
             duration2 = solver.results[result + 25].duration;
             if spoilers_hidden {
@@ -133,7 +135,7 @@ fn main() {
             }
             solved += 1;
         } else {
-                //-------------------------------------------
+            //-------------------------------------------
             print!("                                            |");
         }
         println!();
@@ -141,7 +143,7 @@ fn main() {
         if (result + 1) % 25 == 0 && total_problems > 1 {
             skip = 25;
             println!( "-------------------------------------------------------------------------------------------");
-            let level = format!("Level {}", solved/25);
+            let level = format!("Level {}", solved / 25);
             let out = format!("| Good Job!                                                                    {:>10} |", level);
             println!("{}", out.bright_blue());
             println!( "-------------------------------------------------------------------------------------------");
@@ -149,9 +151,8 @@ fn main() {
     }
 
     if solved % 50 != 0 && solved % 50 != 49 && total_problems > 1 {
-        
         println!( "-------------------------------------------------------------------------------------------");
-        let level = format!("Level {}", solved/25);
+        let level = format!("Level {}", solved / 25);
         let out = format!("| Final Results                                                                {:>10} |", level);
         println!("{}", out.bright_blue());
         println!( "-------------------------------------------------------------------------------------------");
@@ -160,16 +161,22 @@ fn main() {
         println!( "-------------------------------------------------------------------------------------------");
     }
     let end = time::now();
-    let duration = (end - start).num_nanoseconds().unwrap() as f64 /1000000000.0;
-    
-    println!("Solved {} problems in {:.5} seconds.", total_problems, duration);
+    let duration = (end - start).num_nanoseconds().unwrap() as f64 / 1000000000.0;
+
+    println!(
+        "Solved {} problems in {:.5} seconds.",
+        total_problems, duration
+    );
 
     let avg: f64 = duration / total_problems as f64;
     if avg * PROBLEMS > GOAL {
         println!("Average time per problem: {:.5}", avg);
-        println!("This must be lowered to {:.5}", total_problems as f64*GOAL/(PROBLEMS));
+        println!(
+            "This must be lowered to {:.5}",
+            total_problems as f64 * GOAL / (PROBLEMS)
+        );
     } else {
-		let score = total_problems as f64*GOAL/PROBLEMS/avg*100.0;
+        let score = total_problems as f64 * GOAL / PROBLEMS / avg * 100.0;
         println!("Average time per problem: {:.5}", avg);
         println!("This average meets expectations ({:.2}%).", score);
     }

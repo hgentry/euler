@@ -1,18 +1,18 @@
 use utils::math;
 
 pub fn solve() -> i64 {
-    let mut cubes: Vec<(i64, i64, i64)> = vec!();
+    let mut cubes: Vec<(i64, i64, i64)> = vec![];
     let desired_perms = 5;
-    
-    let mut pows = vec!(1);
+
+    let mut pows = vec![1];
     for _ in 1..15 {
-        let next = 10*pows[pows.len()-1];
+        let next = 10 * pows[pows.len() - 1];
         pows.push(next);
     }
 
     let mut i = 1;
     loop {
-        let mut cube = i*i*i;
+        let mut cube = i * i * i;
         let cube_init = cube;
         let mut cube_v = math::to_vec(&cube);
         cube_v.sort_by_key(|x| -x);
@@ -36,6 +36,6 @@ pub fn solve() -> i64 {
                 cubes.remove(0);
             }
         }
-        i+=1;
+        i += 1;
     }
 }

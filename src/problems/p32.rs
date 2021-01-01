@@ -9,13 +9,13 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
 
 pub fn solve() -> i64 {
     let mut sum = 0;
-    let mut list = vec!();
+    let mut list = vec![];
     let perms = generate_permutations();
     for i in perms {
         for j in 0..i {
-            let n = i*j;
-            let mut digits = vec!();
-            let parse = vec!(i, j, n);
+            let n = i * j;
+            let mut digits = vec![];
+            let parse = vec![i, j, n];
             let mut failure = false;
             let mut len = 0;
             for k in parse {
@@ -27,7 +27,8 @@ pub fn solve() -> i64 {
                         digits.push(digit);
                         len += 1;
                     } else {
-                        failure = true; break;
+                        failure = true;
+                        break;
                     }
                 }
                 if failure {
@@ -51,10 +52,10 @@ pub fn solve() -> i64 {
 }
 
 pub fn generate_permutations() -> Vec<i64> {
-    let mut perms = vec!();
+    let mut perms = vec![];
     for i in 0..1970 {
         let mut i_p = i;
-        let mut digits = vec!();
+        let mut digits = vec![];
         let mut failure = false;
         while i_p != 0 {
             let digit = i_p % 10;
@@ -74,14 +75,3 @@ pub fn generate_permutations() -> Vec<i64> {
     }
     perms
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 pub fn solve() -> i64 {
-	pyramid("75
+    pyramid(
+        "75
 95 64
 17 47 82
 18 35 87 10
@@ -13,43 +14,43 @@ pub fn solve() -> i64 {
 70 11 33 28 77 73 17 78 39 68 17 57
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
-04 62 98 27 23 09 70 98 73 93 38 53 60 04 23")
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23",
+    )
 }
 
+pub fn pyramid(input: &str) -> i64 {
+    let vinput: Vec<&str> = input.split('\n').collect();
+    let mut numbox: Vec<Vec<i64>> = vec![];
 
-pub fn pyramid(input : &str) -> i64 {
-	let vinput: Vec<&str> = input.split('\n').collect();
-	let mut numbox : Vec<Vec<i64>> = vec![];
+    let mut lines = 0;
+    for line in vinput {
+        let vline: Vec<&str> = line.split(' ').collect();
+        numbox.push(vec![]);
+        for n in vline {
+            let val: i64 = n.parse::<i64>().unwrap();
+            numbox[lines].push(val);
+        }
+        lines += 1;
+    }
 
-	let mut lines = 0;
-	for line in vinput {
-		let vline : Vec<&str> = line.split(' ').collect();
-		numbox.push(vec![]);
-		for n in vline {
-			let val : i64 = n.parse::<i64>().unwrap();
-			numbox[lines].push(val);
-		}
-		lines += 1;
-	}
-
-	for i in 2..lines+1 {
-		for j in 0..numbox[lines - i].len() {
-			if numbox[lines-i+1][j] > numbox[lines-i+1][j+1] {
-				numbox[lines-i][j] += numbox[lines-i+1][j];
-			} else {
-				numbox[lines-i][j] += numbox[lines-i+1][j+1];
-			}
-		}
-	}
-	numbox[0][0]
+    for i in 2..lines + 1 {
+        for j in 0..numbox[lines - i].len() {
+            if numbox[lines - i + 1][j] > numbox[lines - i + 1][j + 1] {
+                numbox[lines - i][j] += numbox[lines - i + 1][j];
+            } else {
+                numbox[lines - i][j] += numbox[lines - i + 1][j + 1];
+            }
+        }
+    }
+    numbox[0][0]
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-	
-	#[test]
+
+    #[test]
     fn correct() {
-		assert_eq!(solve(), 1074);
+        assert_eq!(solve(), 1074);
     }
 }

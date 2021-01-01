@@ -1,12 +1,12 @@
 pub fn solve() -> i64 {
     let mut sum = 5;
-    let mut primes = vec!(2,3);
+    let mut primes = vec![2, 3];
     let mut checking = 5;
     while checking < 2000000 {
         let upper_limit = (checking as f64).sqrt() as i64 + 1;
         let mut found = false;
         let len = primes.len();
-	    for i in 0..len {
+        for i in 0..len {
             let p = primes[i];
             if p > upper_limit {
                 found = true;
@@ -16,7 +16,7 @@ pub fn solve() -> i64 {
                     break;
                 }
             }
-            if i == len-1 {
+            if i == len - 1 {
                 found = true;
                 break;
             }
@@ -33,9 +33,9 @@ pub fn solve() -> i64 {
 #[cfg(test)]
 mod tests {
     use super::*;
-	
-	#[test]
+
+    #[test]
     fn correct() {
-		assert_eq!(solve(), 142913828922);
+        assert_eq!(solve(), 142913828922);
     }
 }

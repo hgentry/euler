@@ -2,7 +2,7 @@ pub fn solve() -> i64 {
     let mut count = 0;
     for n in 1..=100 {
         for r in 1..n {
-            if combination_exceeds(n,r,1000000) {
+            if combination_exceeds(n, r, 1000000) {
                 count += 1;
             }
         }

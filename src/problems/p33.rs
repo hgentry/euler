@@ -9,12 +9,13 @@ If the product of these four fractions is given in its lowest common terms, find
 */
 
 pub fn solve() -> i64 {
-    let mut fraction = (1,1);
+    let mut fraction = (1, 1);
     for bottom in 10..100 {
         for top in 10..bottom {
-            if reduce((top, bottom)) == wrong_reduce((top, bottom),0)
-                || reduce((top, bottom)) == wrong_reduce((top, bottom),1) {
-                    fraction = multiply(fraction, (top, bottom));
+            if reduce((top, bottom)) == wrong_reduce((top, bottom), 0)
+                || reduce((top, bottom)) == wrong_reduce((top, bottom), 1)
+            {
+                fraction = multiply(fraction, (top, bottom));
             }
         }
     }
@@ -22,13 +23,13 @@ pub fn solve() -> i64 {
 }
 
 pub fn multiply((top1, bottom1): (i64, i64), (top2, bottom2): (i64, i64)) -> (i64, i64) {
-    reduce((top1*top2,bottom1*bottom2))
+    reduce((top1 * top2, bottom1 * bottom2))
 }
 
 pub fn reduce((top, bottom): (i64, i64)) -> (i64, i64) {
     let mut reduced_top = top;
     let mut reduced_bottom = bottom;
-    for i in 2..bottom-1 {
+    for i in 2..bottom - 1 {
         while reduced_top % i == 0 && reduced_bottom % i == 0 {
             reduced_top /= i;
             reduced_bottom /= i;
@@ -38,8 +39,8 @@ pub fn reduce((top, bottom): (i64, i64)) -> (i64, i64) {
 }
 
 pub fn wrong_reduce((top, bottom): (i64, i64), pos: i64) -> (i64, i64) {
-    let mut top_digits = vec!();
-    let mut bottom_digits = vec!();
+    let mut top_digits = vec![];
+    let mut bottom_digits = vec![];
     let n_pos;
     let mut top_parse = top;
     let mut bottom_parse = bottom;
@@ -59,7 +60,7 @@ pub fn wrong_reduce((top, bottom): (i64, i64), pos: i64) -> (i64, i64) {
         bottom_parse /= 10;
         bottom_digits.push(digit);
     }
-    
+
     let removed = top_digits.remove(n_pos as usize);
     let mut bottom_pos = 2;
     for i in 0..2 {

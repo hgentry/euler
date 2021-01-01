@@ -12,6 +12,5 @@ pub fn solve() -> i64 {
             }
         }
     }
-    return 9999-found;
-
+    return 9999 - found;
 }
