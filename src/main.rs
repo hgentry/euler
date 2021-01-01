@@ -8,10 +8,10 @@ mod initializer;
 
 
 extern crate time;
-extern crate num_bigint;
 extern crate colored;
 extern crate ord_subset;
 extern crate substring;
+extern crate num;
 
 use colored::*;
 use std::env;

@@ -23,12 +23,12 @@ pub fn solve() -> i64 {
 
 
 pub fn num_alter(x: i64, b: i64) -> Vec<i64> {
-    let start_num: Vec<i64> = math::to_vec(x);
+    let start_num: Vec<i64> = math::to_vec(&x);
     let mut results: Vec<i64> = vec!();
 
     for j in 0..10 {
         let mut r = b;
-        let mut mutilate = math::to_vec(x);
+        let mut mutilate = math::to_vec(&x);
         for i in 0..start_num.len() {
             if r % 2 == 1 {
                 mutilate[i] = j as i64;

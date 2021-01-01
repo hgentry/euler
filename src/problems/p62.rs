@@ -14,7 +14,7 @@ pub fn solve() -> i64 {
     loop {
         let mut cube = i*i*i;
         let cube_init = cube;
-        let mut cube_v = math::to_vec(cube);
+        let mut cube_v = math::to_vec(&cube);
         cube_v.sort_by_key(|x| -x);
         cube = math::from_vec(&cube_v);
 

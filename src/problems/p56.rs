@@ -1,6 +1,4 @@
-extern crate num_bigint;
-
-use num_bigint::*;
+use num::bigint::*;
 use utils::math;
 
 pub fn solve() -> BigInt {

@@ -13,3 +13,13 @@ pub fn solve() -> i64 {
 	}
 	math::triangle(n-1) as i64
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 76576500);
+    }
+}

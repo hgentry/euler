@@ -1,13 +1,15 @@
 use utils::math;
-extern crate num_bigint;
+extern crate num;
 
-use num_bigint::*;
+use num::rational::{Ratio, BigRational};
+use num::bigint::*;
+
 pub fn solve() -> BigInt {
     let add = e_seq(100);
-    return math::sum_digits_big(add.0);
+    return math::sum_digits(add.numer());
 }
 
-pub fn e_seq(n: i128) -> (BigInt, BigInt) {
+pub fn e_seq(n: i64) -> BigRational {
     let  mut r = vec!(2,1,2);
     for i in 0..n-3 {
         if (i + 1) % 3 == 0 {
@@ -20,12 +22,13 @@ pub fn e_seq(n: i128) -> (BigInt, BigInt) {
     return expanded_sum(r);
 }
 
-pub fn expanded_sum(sequence: Vec<i128>) -> (BigInt, BigInt) {
+pub fn expanded_sum(sequence: Vec<i64>) -> BigRational {
     let i = sequence.len() - 1;
-    let mut temp: (BigInt, BigInt) = (sequence[i].to_bigint().unwrap(),1.to_bigint().unwrap());
+    let mut temp: BigRational = Ratio::from_integer(sequence[i].to_bigint().unwrap());
     for j in 0..i {
-        temp = (temp.1, temp.0);
-        temp = math::add_fractions_without_reduce_big(temp, (sequence[i-j-1].to_bigint().unwrap(),1.to_bigint().unwrap()));
+        temp = Ratio::new_raw(temp.denom().clone(), temp.numer().clone());
+        temp = math::add_ratios_carelessly(temp, Ratio::from_integer(sequence[i-j-1].to_bigint().unwrap()));
+        //temp = temp + Ratio::from_integer(sequence[i-j-1].to_bigint().unwrap());
     }
     return temp;
 }

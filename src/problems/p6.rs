@@ -20,3 +20,13 @@ fn square_sum(x: i64) -> i64 {
 	sum * sum
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 25164150);
+    }
+}
+

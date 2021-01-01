@@ -19,8 +19,8 @@ pub fn solve() -> i64 {
 }
 
 pub fn same_digits(x: i64, y: i64) -> bool {
-    let x_v = math::to_vec(x);
-    let mut y_v = math::to_vec(y);
+    let x_v = math::to_vec(&x);
+    let mut y_v = math::to_vec(&y);
     if x_v.len() != y_v.len() {
         return false;
     }

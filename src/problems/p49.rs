@@ -6,7 +6,7 @@ use utils::math;
 pub fn solve() -> String {
 	let primes = primes::list_primes(10000);
 	for p in primes {
-		let p_vec = math::to_vec(p);
+		let p_vec = math::to_vec(&p);
 		let mut factory = PandigitalFactory{current: p_vec};
 		let mut j = factory.get();
 		let init_j = j;

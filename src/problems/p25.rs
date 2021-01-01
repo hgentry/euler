@@ -1,7 +1,6 @@
-extern crate num_bigint;
-use num_bigint::*;
+use num::bigint::*;
 
-pub fn solve() -> num_bigint::BigInt {
+pub fn solve() -> BigInt {
 	let mut index = 2.to_bigint().unwrap();
 	let mut f1 = 1.to_bigint().unwrap();
 	let mut f2 = 1.to_bigint().unwrap();

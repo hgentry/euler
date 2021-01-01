@@ -1,5 +1,4 @@
-extern crate num_bigint;
-use num_bigint::*;
+use num::bigint::*;
 
 extern crate colored;
 use colored::*;

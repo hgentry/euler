@@ -1,3 +1,5 @@
+use utils::math;
+
 pub fn solve() -> i64 {
 	let mut best = 1;
 	let mut i = 100;
@@ -6,7 +8,7 @@ pub fn solve() -> i64 {
 		while j <= i {
 			let current = i*j;
 			if current > best {
-				if is_palindrome(current) {
+				if math::is_palindrome(&current) {
 					best = current;
 				}
 			}
@@ -18,7 +20,12 @@ pub fn solve() -> i64 {
 	return best;
 }
 
-fn is_palindrome(x: i64) -> bool {
-	let x_str = x.to_string();
-	x_str.bytes().eq(x_str.bytes().rev())
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 906609);
+    }
 }

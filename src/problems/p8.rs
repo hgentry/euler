@@ -17,3 +17,13 @@ pub fn solve() -> i64 {
 	}
 	return best;
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 23514624000);
+    }
+}

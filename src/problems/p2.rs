@@ -14,3 +14,13 @@ pub fn solve() -> i64 {
 
 	return sum;
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 4613732);
+    }
+}

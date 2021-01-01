@@ -1,6 +1,8 @@
-extern crate num_bigint;
+extern crate num;
 
-use num_bigint::*;
+use num::bigint::*;
+use num::traits::*;
+use num::rational::*;
 use std::vec;
 use utils::primes;
 
@@ -388,16 +390,18 @@ pub fn from_sorted_vec_with_zeroes(v: &Vec<i64>) -> i64 {
 	return sum;
 }
 
-pub fn to_vec(mut x: i64) -> Vec<i64> {
+pub fn to_vec<T: num::Integer + Clone + FromPrimitive>(x1: &T) -> Vec<T> {
+	let mut x = x1.clone();
+	let ten = T::from_i64(10).unwrap();
 	let mut ret = vec!();
-	while x > 0 {
-		ret.insert(0,x%10);
-		x /= 10;
+	while x > Zero::zero() {
+		ret.insert(0,x.clone() % ten.clone());
+		x = x.clone() / ten.clone();
 	}
 	return ret;
 }
 
-pub fn is_palindrome(x: i128) -> bool {
+pub fn is_palindrome<T: num::Integer + Clone + std::fmt::Display>(x: &T) -> bool {
 	let x_str: String = format!("{}",x);
 	let x_reversed: String = x_str.chars().rev().collect();
 	return x_str == x_reversed;
@@ -454,36 +458,120 @@ pub fn swap_i64(x: i64, k0: i64, l0: i64, pows: &Vec<i64>) -> i64{
     return x1;
 }
 
-pub fn add_fractions(a: (i64, i64), b: (i64, i64)) -> (i64, i64) {
-	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
-	let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
-	return reduced;
-}
-
-pub fn add_fractions_without_reduce(a: (i64, i64), b: (i64, i64)) -> (i64, i64) {
-	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
-	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
-	return to_reduce;
+pub fn add_ratios_carelessly<T: num::Integer + Clone>(a: Ratio<T>, b: Ratio<T>) -> Ratio<T> {
+	return Ratio::new_raw(a.numer().clone() * b.denom().clone() + b.numer().clone() * a.denom().clone(), a.denom().clone()*b.denom().clone());
 }
 
 
-pub fn add_fractions_without_reduce_i128(a: (i128, i128), b: (i128, i128)) -> (i128, i128) {
-	let to_reduce = (a.0 * b.1 + b.0 * a.1, a.1*b.1);
-	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
-	return to_reduce;
-}
-
-pub fn add_fractions_without_reduce_big(a: (BigInt,BigInt), b: (BigInt,BigInt)) -> (BigInt,BigInt) {
-	let to_reduce = (a.0.clone() * b.1.clone() + b.0.clone() * a.1.clone(), a.1.clone()*b.1.clone());
-	//let reduced = reduce_fraction(to_reduce.0, to_reduce.1);
-	return to_reduce;
-}
-
-pub fn sum_digits_big(mut x: BigInt) -> BigInt {
-	let mut sum = 0.to_bigint().unwrap();
-	while x != 0.to_bigint().unwrap() {
-		sum += x.clone() % 10.to_bigint().unwrap();
-		x /= 10.to_bigint().unwrap();
+pub fn sum_digits<T: num::Integer + Clone + FromPrimitive>(x1: &T) -> T {
+	let mut x = x1.clone();
+	let mut sum = Zero::zero();
+	let ten = T::from_i64(10).unwrap();
+	while x != Zero::zero() {
+		let mut next = x.clone() % ten.clone();
+		if next < Zero::zero() {
+			next = next.clone() - next.clone() - next.clone();
+		}
+		sum = sum + next;
+		x = x/ten.clone();
 	}
 	return sum;
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn test_add_ratios_carelessly_1() {
+		let add = add_ratios_carelessly(Ratio::new(7,5),Ratio::new(3,20));
+		assert_eq!(*add.numer(), 155);
+		assert_eq!(*add.denom(), 100);
+	}
+	
+	#[test]
+    fn test_add_ratios_carelessly_2() {
+		let add = add_ratios_carelessly(Ratio::new_raw(0,5),Ratio::new(3,20));
+		assert_eq!(*add.numer(), 15);
+		assert_eq!(*add.denom(), 100);
+	}
+	
+	#[test]
+    fn test_add_ratios_carelessly_3() {
+		let add = add_ratios_carelessly(Ratio::new(7.to_bigint().unwrap(),5.to_bigint().unwrap()),Ratio::new(3.to_bigint().unwrap(),20.to_bigint().unwrap()));
+		assert_eq!(*add.numer(), 155.to_bigint().unwrap());
+		assert_eq!(*add.denom(), 100.to_bigint().unwrap());
+	}
+	
+	#[test]
+    fn test_add_ratios_carelessly_4() {
+		let add = add_ratios_carelessly(Ratio::new_raw(0.to_bigint().unwrap(),5.to_bigint().unwrap()),Ratio::new(3.to_bigint().unwrap(),20.to_bigint().unwrap()));
+		assert_eq!(*add.numer(), 15.to_bigint().unwrap());
+		assert_eq!(*add.denom(), 100.to_bigint().unwrap());
+	}
+	
+	#[test]
+    fn test_sum_digits_1() {
+		assert_eq!(sum_digits(&-3), 3);
+	}
+	
+	#[test]
+    fn test_sum_digits_2() {
+		assert_eq!(sum_digits(&40056), 15);
+	}
+	
+	#[test]
+    fn test_sum_digits_3() {
+		assert_eq!(sum_digits(&-3112), 7);
+	}
+	
+	#[test]
+    fn test_sum_digits_4() {
+		assert_eq!(sum_digits(&15.to_bigint().unwrap()), 6.to_bigint().unwrap());
+	}
+	
+	#[test]
+    fn test_sum_digits_5() {
+		assert_eq!(sum_digits(&(-15).to_bigint().unwrap()), 6.to_bigint().unwrap());
+	}
+	
+	#[test]
+    fn test_sum_digits_6() {
+		assert_eq!(sum_digits(&(0).to_bigint().unwrap()), 0.to_bigint().unwrap());
+	}
+
+	#[test]
+    fn test_sum_digits_7() {
+		assert_eq!(sum_digits(&0), 0);
+	}
+	
+	#[test]
+    fn test_is_palindrome_1() {
+		assert_eq!(is_palindrome(&0), true);
+	}
+	
+	#[test]
+    fn test_is_palindrome_2() {
+		assert_eq!(is_palindrome(&31), false);
+	}
+	
+	#[test]
+    fn test_is_palindrome_3() {
+		assert_eq!(is_palindrome(&34343), true);
+	}
+	
+	#[test]
+    fn test_is_palindrome_4() {
+		assert_eq!(is_palindrome(&(0.to_bigint().unwrap())), true);
+	}
+	
+	#[test]
+    fn test_is_palindrome_5() {
+		assert_eq!(is_palindrome(&(31.to_bigint().unwrap())), false);
+	}
+	
+	#[test]
+    fn test_is_palindrome_6() {
+		assert_eq!(is_palindrome(&(34343.to_bigint().unwrap())), true);
+    }
 }

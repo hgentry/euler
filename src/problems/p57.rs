@@ -1,6 +1,5 @@
 use utils::math;
-extern crate num_bigint;
-use num_bigint::*;
+use num::bigint::*;
 
 pub fn solve() -> i64 {
     let mut count: i64 = 0;

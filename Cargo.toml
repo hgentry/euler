@@ -5,7 +5,7 @@ authors = ["hgentry"]
 
 [dependencies]
 time = "0.1.36"
-num-bigint = "0.3.1"
 colored = "1.6"
 ord_subset = "3"
 substring = "1.4"
+num = "0.3.1"

@@ -139,3 +139,13 @@ pub fn solve() -> i64 {
 
 	return result.parse::<i64>().unwrap();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+	
+	#[test]
+    fn correct() {
+		assert_eq!(solve(), 5537376230);
+    }
+}
