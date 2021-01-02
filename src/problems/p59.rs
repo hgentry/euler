@@ -1,4 +1,4 @@
-use utils::strings;
+use crate::utils::strings;
 
 pub fn solve() -> i64 {
 	let input = strings::read_file_to_string("input/p059_cipher.txt");

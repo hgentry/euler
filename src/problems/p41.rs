@@ -1,5 +1,5 @@
-use utils::math;
-use utils::primes;
+use crate::utils::math;
+use crate::utils::primes;
 pub fn solve() -> i64 {
 	let mut perm = vec![7, 6, 5, 4, 3, 2, 1];
 	while !primes::is_prime(to_num(&perm)) {

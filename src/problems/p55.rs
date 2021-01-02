@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> i64 {
 	let mut found = 0;

@@ -1,5 +1,5 @@
-use utils::math;
-use utils::strings;
+use crate::utils::math;
+use crate::utils::strings;
 pub fn solve() -> i64 {
 	let s: String = strings::read_file_to_string("input/p042_words.txt");
 	let list: Vec<String> = strings::process_list(s);

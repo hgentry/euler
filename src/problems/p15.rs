@@ -1,5 +1,5 @@
 use num::bigint::*;
-use utils;
+use crate::utils;
 
 pub fn solve() -> BigInt {
 	utils::math::combination_big(&40, &20)

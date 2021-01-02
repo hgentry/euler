@@ -5,7 +5,7 @@ use num::rational::*;
 use num::traits::*;
 use std::str::FromStr;
 use std::vec;
-use utils::primes;
+use crate::utils::primes;
 
 pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
 	x: &T,
@@ -396,6 +396,8 @@ where
 	return x_reversed.parse().unwrap();
 }
 
+
+// This should be expanded into a Permutation object.
 pub fn next_permutation_i64(x: i64, pows: &Vec<i64>) -> i64 {
 	let mut k0: i64 = -1;
 

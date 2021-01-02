@@ -1,5 +1,5 @@
 use num::bigint::*;
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> i64 {
 	let mut count: i64 = 0;

@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> i64 {
 	let mut cubes: Vec<(i64, i64, i64)> = vec![];

@@ -1,4 +1,4 @@
-use utils::primes;
+use crate::utils::primes;
 
 pub fn solve() -> i64 {
 	let primes = primes::list_primes(1000000);

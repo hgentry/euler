@@ -1,6 +1,6 @@
 extern crate num_bigint;
 use num_bigint::*;
-use utils::math;
+use crate::utils::math;
 extern crate colored;
 use colored::*;
 

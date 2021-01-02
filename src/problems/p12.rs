@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> i64 {
 	let mut most_factors = 0;

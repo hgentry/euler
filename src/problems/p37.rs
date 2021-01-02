@@ -1,5 +1,5 @@
-use utils::math;
-use utils::primes;
+use crate::utils::math;
+use crate::utils::primes;
 pub fn solve() -> i64 {
 	let mut rt_primes = vec![2, 3, 5, 7];
 	let mut successes = vec![];

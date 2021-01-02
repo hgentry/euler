@@ -1,4 +1,4 @@
-use utils;
+use crate::utils;
 
 pub fn solve() -> i64 {
 	let mut sum = 0;

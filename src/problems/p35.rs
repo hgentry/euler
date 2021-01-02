@@ -6,7 +6,7 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 How many circular primes are there below one million?
 */
 
-use utils;
+use crate::utils;
 
 pub fn solve() -> i64 {
 	let mut primes = vec![2, 3];

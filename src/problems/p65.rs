@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 extern crate num;
 
 use num::bigint::*;

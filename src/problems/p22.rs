@@ -1,4 +1,4 @@
-use utils;
+use crate::utils;
 
 pub fn solve() -> i64 {
 	let s: String = utils::strings::read_file_to_string("input/p022_names.txt");

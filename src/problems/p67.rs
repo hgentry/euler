@@ -1,4 +1,4 @@
-use problems::p18;
+use crate::problems::p18;
 
 pub fn solve() -> i64 {
 	p18::pyramid("59

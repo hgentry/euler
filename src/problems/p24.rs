@@ -1,4 +1,4 @@
-use utils;
+use crate::utils;
 
 pub fn solve() -> i64 {
 	//I did math by hand to find a better starting point

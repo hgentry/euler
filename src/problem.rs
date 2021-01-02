@@ -1,4 +1,4 @@
-use problems;
+use crate::problems;
 use time::*;
 
 pub fn problem(n: i64) -> (i64, String, f64) {

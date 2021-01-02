@@ -1,5 +1,5 @@
-use utils::math;
-use utils::primes;
+use crate::utils::math;
+use crate::utils::primes;
 //296962999629
 //37937097039
 

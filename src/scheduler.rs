@@ -2,7 +2,7 @@ use std::sync::mpsc::channel;
 use std::sync::{Arc, Mutex};
 use std::thread;
 
-use problem;
+use crate::problem;
 
 pub struct Status {
 	pub to_solve: Vec<i64>,

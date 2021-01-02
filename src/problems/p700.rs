@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> u64 {
 	let m: u64 = 4503599627370517;

@@ -1,4 +1,4 @@
-use utils::math;
+use crate::utils::math;
 
 pub fn solve() -> i64 {
 	let big = math::factorial_big(&100);
