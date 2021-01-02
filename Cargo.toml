@@ -4,8 +4,8 @@ version = "0.1.0"
 authors = ["hgentry"]
 
 [dependencies]
-time = "0.1.36"
-colored = "1.6"
+time = "0.2.23"
+colored = "2.0.0"
 ord_subset = "3"
 substring = "1.4"
 num = "0.3.1"

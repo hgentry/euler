@@ -14,6 +14,7 @@ extern crate time;
 
 use colored::*;
 use std::env;
+use time::*;
 
 static T_COUNT: i64 = 16;
 static PROBLEMS: f64 = 739.0;
@@ -23,7 +24,7 @@ use scheduler::*;
 
 fn main() {
 	let spoilers_hidden = false;
-	let start = time::now();
+	let start = Instant::now();
 	//let status = Status{to_solve: vec!(59)};
 	let mut status = Status {
 		to_solve: vec![
@@ -160,8 +161,8 @@ fn main() {
 	if total_problems == 1 {
 		println!( "-------------------------------------------------------------------------------------------");
 	}
-	let end = time::now();
-	let duration = (end - start).num_nanoseconds().unwrap() as f64 / 1000000000.0;
+	let end = Instant::now();
+	let duration = (end - start).whole_nanoseconds() as f64 / 1000000000.0;
 
 	println!(
 		"Solved {} problems in {:.5} seconds.",

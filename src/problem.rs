@@ -1,9 +1,9 @@
-extern crate time;
 use problems;
+use time::*;
 
 pub fn problem(n: i64) -> (i64, String, f64) {
 	let s: String;
-	let start = time::now();
+	let start = Instant::now();
 	let mut found = false;
 	match n {
 		741 => {
@@ -467,8 +467,8 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 		}
 		_ => s = format!("Problem {} has not been solved.", n),
 	}
-	let end = time::now();
-	let duration = (end - start).num_nanoseconds().unwrap() as f64 / 1000000000.0;
+	let end = Instant::now();
+	let duration = (end - start).whole_nanoseconds() as f64 / 1000000000.0;
 	if found {
 	} else {
 		println!("{}", s);
