@@ -6,7 +6,7 @@ pub fn solve() -> BigInt {
 	for i in 1..100 {
 		for j in 1..100 {
 			let test = math::pow_big(i, j);
-			let sum = digit_sum(test);
+			let sum = math::sum_digits(&test);
 			if sum > max {
 				max = sum.clone();
 			}
@@ -15,12 +15,14 @@ pub fn solve() -> BigInt {
 	return max;
 }
 
-pub fn digit_sum(x: BigInt) -> BigInt {
-	let s = x.to_string();
-	let v: Vec<char> = s.chars().collect();
-	let mut sum = 0;
-	for i in 0..v.len() {
-		sum += v[i] as i64 - '0' as i64;
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 972.to_bigint().unwrap());
 	}
-	return sum.to_bigint().unwrap();
 }
+
+

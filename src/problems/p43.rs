@@ -27,7 +27,7 @@ pub fn solve() -> i64 {
 
 		while digits != vec![] {
 			digits = math::next_permutation_in_place(digits);
-			let test = math::to_num(&digits) * 1000 + seventeen;
+			let test = math::from_vec(&digits) * 1000 + seventeen;
 			let mut n = test;
 			let mut valid = true;
 			for i in 0..7 {

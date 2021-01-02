@@ -42,3 +42,13 @@ pub fn num_alter(x: i64, b: i64) -> Vec<i64> {
 
 	return results;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 121313);
+	}
+}

@@ -38,3 +38,13 @@ pub fn combination_exceeds(n: i64, r: i64, limit: i64) -> bool {
 	}
 	return false;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 4075);
+	}
+}

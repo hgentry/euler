@@ -54,3 +54,13 @@ pub fn check_concat(a: i64, b: i64) -> bool {
 	}
 	return false;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 26033);
+	}
+}

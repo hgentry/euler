@@ -2,7 +2,7 @@ use num::bigint::*;
 use utils;
 
 pub fn solve() -> BigInt {
-	utils::math::combination_big(40, 20)
+	utils::math::combination_big(&40, &20)
 }
 
 #[cfg(test)]

@@ -51,3 +51,13 @@ pub fn same_digits(x: i64, y: i64) -> bool {
 	}
 	return !content;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 142857);
+	}
+}

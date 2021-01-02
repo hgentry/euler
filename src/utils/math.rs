@@ -7,26 +7,26 @@ use std::str::FromStr;
 use std::vec;
 use utils::primes;
 
-pub fn factorial_big(x: i64) -> BigInt {
+pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(x: &T) -> BigInt {
 	let mut f = 1.to_bigint().unwrap();
-	for i in 1..x + 1 {
+	for i in num::range_step::<T>(One::one(),x.clone() + One::one(),One::one()) {
 		f = f * i.to_bigint().unwrap();
 	}
 	f
 }
 
-pub fn combination_big(n: i64, k: i64) -> BigInt {
+pub fn combination_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(n: &T, k: &T) -> BigInt {
 	let mut f = permutation_big(n, k);
 
-	for i in 1..n - k + 1 {
+	for i in num::range_step::<T>(One::one(),n.clone() - k.clone() + One::one(),One::one()) {
 		f = f / i.to_bigint().unwrap();
 	}
 	return f;
 }
 
-pub fn permutation_big(n: i64, k: i64) -> BigInt {
+pub fn permutation_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(n: &T, k: &T) -> BigInt {
 	let mut f = 1.to_bigint().unwrap();
-	for i in n - k + 1..n + 1 {
+	for i in num::range_step::<T>(n.clone() - k.clone() + One::one(), n.clone() + One::one(), One::one()) {
 		f = f * i.to_bigint().unwrap();
 	}
 	f
@@ -291,14 +291,6 @@ pub fn is_triangle(x: i64) -> bool {
 	return false;
 }
 
-pub fn to_num(v: &Vec<i64>) -> i64 {
-	let mut sum = 0;
-	for i in 0..v.len() {
-		sum += pow(10, i as i64) * v[(v.len() - i - 1) as usize];
-	}
-	sum
-}
-
 pub fn num_digits(mut x: i64) -> i64 {
 	let mut len = 0;
 	loop {
@@ -318,17 +310,6 @@ pub fn num_digits_bigint(x: BigInt) -> i64 {
 	let arr = x.to_string();
 	len = arr.len() as i64;
 	return len + 0;
-}
-
-pub fn reduce_fraction(mut a: i64, mut b: i64) -> (i64, i64) {
-	let va = factors(a);
-	for f in &va {
-		while *f > 1 && a % *f == 0 && b % *f == 0 {
-			a /= *f;
-			b /= *f;
-		}
-	}
-	return (a, b);
 }
 
 pub fn extended_euclidean(a: u64, b: u64) -> (i64, i64) {
