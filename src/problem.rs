@@ -6,6 +6,12 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 	let start = time::now();
 	let mut found = false;
 	match n {
+		741 => {
+			s = {
+				found = true;
+				problems::p741::solve().to_string()
+			}
+		}
 		65 => {
 			s = {
 				found = true;
