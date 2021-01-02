@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use crate::utils;
+use std::collections::HashMap;
 
 pub fn solve() -> i64 {
 	let mut sum: i64 = 0;

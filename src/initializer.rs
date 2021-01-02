@@ -1,5 +1,5 @@
-use std::io::Write;
 use crate::utils::strings;
+use std::io::Write;
 
 pub fn initialize(s: String) -> bool {
 	let mut problem = strings::read_file_to_string("src/problem.rs");

@@ -1,7 +1,7 @@
 //376
 
-use substring::Substring;
 use crate::utils::strings;
+use substring::Substring;
 
 pub fn solve() -> i64 {
 	let mut count = 0;

@@ -1,5 +1,5 @@
-use num::bigint::*;
 use crate::utils::math;
+use num::bigint::*;
 
 pub fn solve() -> BigInt {
 	let mut max = 0.to_bigint().unwrap();

@@ -1,6 +1,6 @@
-use std::collections::HashMap;
 use crate::utils::math;
 use crate::utils::primes;
+use std::collections::HashMap;
 
 pub fn solve() -> i64 {
 	let primes = primes::list_primes(10000);
