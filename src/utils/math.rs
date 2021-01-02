@@ -7,26 +7,38 @@ use std::str::FromStr;
 use std::vec;
 use utils::primes;
 
-pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(x: &T) -> BigInt {
+pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
+	x: &T,
+) -> BigInt {
 	let mut f = 1.to_bigint().unwrap();
-	for i in num::range_step::<T>(One::one(),x.clone() + One::one(),One::one()) {
+	for i in num::range_step::<T>(One::one(), x.clone() + One::one(), One::one()) {
 		f = f * i.to_bigint().unwrap();
 	}
 	f
 }
 
-pub fn combination_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(n: &T, k: &T) -> BigInt {
+pub fn combination_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
+	n: &T,
+	k: &T,
+) -> BigInt {
 	let mut f = permutation_big(n, k);
 
-	for i in num::range_step::<T>(One::one(),n.clone() - k.clone() + One::one(),One::one()) {
+	for i in num::range_step::<T>(One::one(), n.clone() - k.clone() + One::one(), One::one()) {
 		f = f / i.to_bigint().unwrap();
 	}
 	return f;
 }
 
-pub fn permutation_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(n: &T, k: &T) -> BigInt {
+pub fn permutation_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
+	n: &T,
+	k: &T,
+) -> BigInt {
 	let mut f = 1.to_bigint().unwrap();
-	for i in num::range_step::<T>(n.clone() - k.clone() + One::one(), n.clone() + One::one(), One::one()) {
+	for i in num::range_step::<T>(
+		n.clone() - k.clone() + One::one(),
+		n.clone() + One::one(),
+		One::one(),
+	) {
 		f = f * i.to_bigint().unwrap();
 	}
 	f

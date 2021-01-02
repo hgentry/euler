@@ -28,3 +28,14 @@ fn digit_squares_sum(x: i64) -> i64 {
 	}
 	return sum;
 }
+
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 8581146);
+	}
+}

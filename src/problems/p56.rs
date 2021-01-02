@@ -24,5 +24,3 @@ mod tests {
 		assert_eq!(solve(), 972.to_bigint().unwrap());
 	}
 }
-
-

@@ -24,3 +24,13 @@ pub fn build_num(x: i64) -> i64 {
 	sum += x / 10000000 % 10 * 1000000000000000;
 	return sum;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 1389019170);
+	}
+}

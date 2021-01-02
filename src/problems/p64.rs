@@ -47,3 +47,13 @@ pub fn expand_root_len(x: i64) -> i64 {
 
 	return 0;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 1322);
+	}
+}

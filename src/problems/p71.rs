@@ -10,7 +10,7 @@ pub fn solve() -> i64 {
 			continue;
 		}
 		for j in j_min + 1..=max {
-			let t = Ratio::<i64>::new(i,j);
+			let t = Ratio::<i64>::new(i, j);
 			if t > best {
 				best = t;
 			} else {

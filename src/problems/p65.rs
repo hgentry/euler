@@ -34,3 +34,13 @@ pub fn expanded_sum(sequence: Vec<i64>) -> BigRational {
 	}
 	return temp;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 272.to_bigint().unwrap());
+	}
+}

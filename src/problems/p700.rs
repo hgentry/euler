@@ -70,3 +70,13 @@ pub fn solve() -> u64 {
 
 	return sum;
 }
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn correct() {
+		assert_eq!(solve(), 1517926517777556);
+	}
+}
