@@ -34,7 +34,7 @@ pub fn solve() -> u64 {
 	// But instead, I wind up with a list of the differences between successive coins.
 	i = f - 1;
 	let mut list = vec![];
-	let ec = math::extended_euclidean(c, m); // Get the modular inverse of 1504170715041707
+	let ec = math::extended_euclidean(c as i64, m as i64); // Get the modular inverse of 1504170715041707
 	loop {
 		// cn = i mod m
 		// Get the next value by multiplying i by the inverse of c

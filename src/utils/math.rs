@@ -324,9 +324,19 @@ pub fn num_digits_bigint(x: BigInt) -> i64 {
 	return len + 0;
 }
 
-pub fn extended_euclidean(a: u64, b: u64) -> (i64, i64) {
+pub fn extended_euclidean(a: i64, b: i64) -> (i64, i64) {
 	let ee = extended_euclidean_recurse(a as i64, b as i64, 0, 0);
 	return (ee.2, ee.3);
+}
+
+pub fn gcd(mut a: i64, mut b: i64) -> i64 {
+	let mut t;
+	while b != 0 {
+		t = a % b;
+		a = b;
+		b = t;
+	}
+	return a;
 }
 
 fn extended_euclidean_recurse(a: i64, b: i64, mut x: i64, mut y: i64) -> (i64, i64, i64, i64) {

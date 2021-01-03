@@ -1,3 +1,5 @@
+use num::rational::*;
+
 pub fn is_prime(x: i64) -> bool {
 	if x < 2 {
 		return false;
@@ -29,4 +31,31 @@ pub fn list_primes(max: i64) -> Vec<i64> {
 		}
 	}
 	primes
+}
+
+pub fn list_totients(n: i64) -> Vec<i64> {
+	let mut totients = vec![];
+	let primes = list_primes(n);
+	for i in 1..=n {
+		totients.push(Ratio::<i64>::from_integer(i));
+	}
+
+	for p in primes {
+		let mut i = p;
+		loop {
+			if i >= totients.len() as i64 + 1 {
+				break;
+			}
+			totients[i as usize - 1] = totients[i as usize - 1] * Ratio::<i64>::new(p - 1, p);
+
+			i += p;
+		}
+	}
+
+	let mut res = vec![];
+	for t in totients {
+		res.push(*t.numer());
+	}
+
+	return res;
 }
