@@ -1,7 +1,5 @@
-use num::bigint::*;
-
-extern crate colored;
 use colored::*;
+use num::bigint::*;
 
 pub fn solve() -> i64 {
 	return solve_v9();
@@ -23,7 +21,7 @@ pub fn solve_v8() -> i64 {
 }
 
 pub fn solve_v9() -> i64 {
-	return brute_force_faster(10000);
+	return brute_force_faster(100000000);
 }
 
 pub fn brute_force_faster(n: usize) -> i64 {

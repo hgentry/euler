@@ -84,3 +84,5 @@ pub mod p700;
 pub mod p739;
 
 pub mod p741;
+
+pub mod p66;
