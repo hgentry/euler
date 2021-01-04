@@ -14,8 +14,7 @@ mod tests {
 	use super::*;
 
 	#[test]
-	#[ignore]
 	fn correct() {
-		assert_eq!(solve(), 0);
+		assert_eq!(solve(), 303963552391);
 	}
 }
