@@ -90,3 +90,6 @@ pub mod p66;
 pub mod p68;
 
 pub mod p69;
+
+pub mod p70;
+pub mod p72;
