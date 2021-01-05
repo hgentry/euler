@@ -16,7 +16,7 @@ use colored::*;
 use std::env;
 use time::*;
 
-static T_COUNT: i64 = 16;
+static T_COUNT: i64 = 1;
 static PROBLEMS: f64 = 739.0;
 static GOAL: f64 = 60.0;
 

@@ -6,7 +6,7 @@ pub fn solve() -> i128 {
 	for i in totients {
 		sum += i as i128;
 	}
-	return sum - 1;
+	return sum - 2;
 }
 
 #[cfg(test)]

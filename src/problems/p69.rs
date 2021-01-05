@@ -6,7 +6,7 @@ pub fn solve() -> i64 {
 
 	let tot = primes::list_totients(1000000);
 	for i in 2..=1000000 {
-		let f = i as f64 / tot[i - 1] as f64;
+		let f = i as f64 / tot[i] as f64;
 		if f > best_f {
 			best_f = f;
 			best_n = i as i64;

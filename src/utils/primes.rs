@@ -34,28 +34,32 @@ pub fn list_primes(max: i64) -> Vec<i64> {
 }
 
 pub fn list_totients(n: i64) -> Vec<i64> {
-	let mut totients = vec![];
+	let mut totients = vec![1; n as usize + 1];
 	let primes = list_primes(n);
-	for i in 1..=n {
-		totients.push(Ratio::<i64>::from_integer(i));
+	for p1 in &primes {
+		let p = *p1;
+		totients[p as usize] = p - 1;
 	}
 
-	for p in primes {
-		let mut i = p;
-		loop {
-			if i >= totients.len() as i64 + 1 {
+	for i in 2..=n {
+		if totients[i as usize] == i - 1 {
+			continue;
+		}
+		for p1 in &primes {
+			let p = *p1;
+			if p > i {
 				break;
 			}
-			totients[i as usize - 1] = totients[i as usize - 1] * Ratio::<i64>::new(p - 1, p);
-
-			i += p;
+			if i % p == 0 {
+				let gcd = match (i / p) % p == 0 {
+					true => 1,
+					false => 0,
+				};
+				totients[i as usize] = totients[(i / p) as usize] * (p - 1 + gcd);
+				break;
+			}
 		}
 	}
 
-	let mut res = vec![];
-	for t in totients {
-		res.push(*t.numer());
-	}
-
-	return res;
+	return totients;
 }

@@ -378,6 +378,24 @@ pub fn num_digits_bigint(x: BigInt) -> i64 {
 	return len + 0;
 }
 
+pub fn is_permutation_of(mut a: i64, mut b: i64) -> bool {
+	let mut digits = vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	while a != 0 {
+		digits[a as usize % 10] += 1;
+		a /= 10;
+	}
+	while b != 0 {
+		digits[b as usize % 10] -= 1;
+		b /= 10;
+	}
+	for d in digits {
+		if d != 0 {
+			return false;
+		}
+	}
+	return true;
+}
+
 pub fn extended_euclidean(a: i64, b: i64) -> (i64, i64) {
 	let ee = extended_euclidean_recurse(a as i64, b as i64, 0, 0);
 	return (ee.2, ee.3);
@@ -657,5 +675,10 @@ mod tests {
 				assert_eq!(f1_v[j], f2_v[j]);
 			}
 		}
+	}
+
+	#[test]
+	fn test_perms_1() {
+		assert!(is_permutation_of(456, 654));
 	}
 }
