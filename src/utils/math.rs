@@ -4,8 +4,9 @@ use crate::utils::primes;
 use num::bigint::*;
 use num::rational::*;
 use num::traits::*;
-use std::str::FromStr;
+use primes::list_primes;
 use std::vec;
+use std::{collections::HashMap, str::FromStr, sync::Mutex};
 
 pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
 	x: &T,
@@ -68,7 +69,60 @@ pub fn factors(x: i64) -> Vec<i64> {
 	if x != 1 {
 		v.push(x);
 	}
+	v.sort();
 	return v;
+}
+
+pub struct Factorizer {
+	hashmap: HashMap<i64, Vec<i64>>,
+	primes: Vec<i64>,
+}
+
+impl Factorizer {
+	pub fn new() -> Factorizer {
+		return Factorizer {
+			hashmap: HashMap::new(),
+			primes: primes::list_primes(1000000),
+		};
+	}
+
+	pub fn get_factors(&mut self, n: i64) -> Vec<i64> {
+		let mut factor_list = vec![1];
+		if n != 1 {
+			factor_list.push(n);
+		}
+		if self.hashmap.contains_key(&n) {
+			return self.hashmap.get(&n).unwrap().clone();
+		} else {
+			for p1 in 0..self.primes.len() {
+				let p = self.primes[p1];
+				if p > n / 2 {
+					break;
+				}
+				if n % p == 0 {
+					if p != n / p {
+						if !factor_list.contains(&p) {
+							factor_list.push(p);
+						}
+						let v2 = self.get_factors(n / p);
+						for v in v2 {
+							if !factor_list.contains(&v) {
+								factor_list.push(v);
+							}
+						}
+					} else {
+						if !factor_list.contains(&p) {
+							factor_list.push(p);
+						}
+					}
+				}
+			}
+		}
+
+		factor_list.sort();
+		self.hashmap.insert(n, factor_list.clone());
+		return factor_list;
+	}
 }
 
 pub fn factors_i128(x: i128) -> Vec<i128> {
@@ -590,5 +644,18 @@ mod tests {
 	#[test]
 	fn test_reverse_2() {
 		assert_eq!(reverse(&21), 12);
+	}
+
+	#[test]
+	fn factors_1() {
+		let mut f = Factorizer::new();
+		for i in 1..100000 {
+			let f1_v = f.get_factors(i);
+			let f2_v = factors(i);
+			assert_eq!(f1_v.len(), f2_v.len());
+			for j in 0..f1_v.len() {
+				assert_eq!(f1_v[j], f2_v[j]);
+			}
+		}
 	}
 }
