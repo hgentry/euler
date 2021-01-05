@@ -4,9 +4,9 @@ use crate::utils::primes;
 use num::bigint::*;
 use num::rational::*;
 use num::traits::*;
-use primes::list_primes;
+
 use std::vec;
-use std::{collections::HashMap, str::FromStr, sync::Mutex};
+use std::{collections::HashMap, str::FromStr};
 
 pub fn factorial_big<T: num::Integer + Clone + CheckedAdd + FromPrimitive + ToBigInt>(
 	x: &T,
