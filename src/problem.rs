@@ -6,6 +6,24 @@ pub fn problem(n: i64) -> (i64, String, f64) {
 	let start = Instant::now();
 	let mut found = false;
 	match n {
+		80 => {
+			s = {
+				found = true;
+				problems::p80::solve().to_string()
+			}
+		}
+		78 => {
+			s = {
+				found = true;
+				problems::p78::solve().to_string()
+			}
+		}
+		77 => {
+			s = {
+				found = true;
+				problems::p77::solve().to_string()
+			}
+		}
 		76 => {
 			s = {
 				found = true;

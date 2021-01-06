@@ -1,18 +1,8 @@
-#[cfg(test)]
-mod tests {
-	use super::*;
-
-	#[test]
-	fn correct() {
-		assert_eq!(solve(), 190569291);
-	}
-}
-
 pub fn solve() -> i64 {
 	let mut p = vec![1];
-	for n in 1..=100 {
+	for n in 1.. {
 		let mut n1 = -1;
-		let mut sum = 0;
+		let mut sum: i64 = 0;
 		for k in 1..=n {
 			n1 *= -1;
 			let a: i64 = (n - k * (3 * k - 1) / 2) as i64;
@@ -33,8 +23,23 @@ pub fn solve() -> i64 {
 			sum += n1 * (p1 + p2);
 		}
 		//println!("{}: {}",n, sum);
+		sum %= 1000000;
 		p.push(sum);
+		if sum == 0 {
+			return n;
+		}
 	}
 
-	return p[100] - 1;
+	return 0;
+}
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	#[ignore]
+	fn correct() {
+		assert_eq!(solve(), 0);
+	}
 }

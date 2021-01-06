@@ -545,6 +545,24 @@ pub fn sum_digits<T: num::Integer + Clone + FromPrimitive>(x1: &T) -> T {
 	return sum;
 }
 
+pub fn changecounter(m: i64, coins: &Vec<i64>, c_e: usize, prev_coin: i64, depth: i64) -> i128 {
+	let mut count = 0;
+	for c1 in 0..c_e {
+		let c = coins[c_e - c1 - 1];
+		if c > prev_coin {
+			continue;
+		}
+		if m - c > 0 {
+			let t = changecounter(m - c, coins, c_e, c, depth + 1);
+			count += t;
+		}
+		if m - c == 0 && depth > 0 {
+			count += 1;
+		}
+	}
+	return count;
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
