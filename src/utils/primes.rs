@@ -1,5 +1,3 @@
-use num::rational::*;
-
 pub fn is_prime(x: i64) -> bool {
 	if x < 2 {
 		return false;
