@@ -30,7 +30,11 @@ pub fn solve() -> i64 {
 			if n.outgoing.len() != 0 {
 				let t;
 				if n_i % len == 0 {
-					t = n.initial_content;
+					if n_i == 0 {
+						t = n.initial_content;
+					} else {
+						t = 31000000; //max is too high so random constant lol
+					}
 				} else {
 					t = n.content;
 				}
@@ -54,18 +58,7 @@ pub fn solve() -> i64 {
 			break;
 		}
 
-		// See which end column did best
-		let mut best = i64::MAX;
-		for j in 1..=len {
-			let n = g.get_node((j * len - 1) as i64).content;
-			if n < best {
-				best = n;
-			}
-		}
-
-		if best < result {
-			result = best;
-		}
+		result = g.get_node((g.node_count() - 1) as i64).content;
 	}
 	return result;
 }
@@ -82,10 +75,6 @@ pub fn build_graph(input: &Vec<Vec<i64>>) -> Graph<i64> {
 	for y in 0..len {
 		for x in 0..len {
 			let node1 = g.get_node(y * len + x).clone();
-			if y > 0 && x != len - 1 {
-				let node2 = g.get_node((y - 1) * len + x).clone();
-				g.add_directional_link(&node1, &node2);
-			}
 			if y < len - 1 && x != len - 1 {
 				let node2 = g.get_node((y + 1) * len + x).clone();
 				g.add_directional_link(&node1, &node2);
@@ -210,6 +199,6 @@ mod tests {
 
 	#[test]
 	fn correct() {
-		assert_eq!(solve(), 260324);
+		assert_eq!(solve(), 427337);
 	}
 }
